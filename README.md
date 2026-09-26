@@ -11,7 +11,7 @@ Landing page institucional e estratégica de alta conversão desenvolvida para a
   - **Ademar Rodrigues Leal** – *Contador Fundador* – **CRC/RJ 062692/O-8** (Fundado em 1989)
   - **Lucas Heckert Leal** – *Contador e Diretor Executivo* – **CRC/RJ 119264/O-8** (Desde 2016)
 - **Sede Própria:** Rua Otávio Tarquino, 507, Loja – Centro, Nova Iguaçu - RJ, CEP: 26210-171, Brasil.
-- **WhatsApp / Contato Oficial:** [(21) 99644-76004](https://wa.me/55219964476004)
+- **WhatsApp / Contato Oficial:** [(21) 97974-1307](https://wa.me/5521979741307)
 - **Horário:** Segunda a Sexta das 08:30 às 17:30 (Plataforma digital 24/7)
 
 ---

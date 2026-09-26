@@ -62,7 +62,7 @@ export const LeadModal: React.FC<LeadModalProps> = ({ isOpen, onClose, sourceCon
       `\nAguardo o retorno de um contador especialista em até 15 minutos!`
     );
 
-    window.open(`https://wa.me/55219964476004?text=${message}`, '_blank');
+    window.open(`https://wa.me/5521979741307?text=${message}`, '_blank');
     onClose();
   };
 

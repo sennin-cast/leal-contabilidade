@@ -112,7 +112,7 @@ export const TaxCalculator: React.FC<TaxCalculatorProps> = ({ onOpenModal }) => 
       `Gostaria de agendar o Diagnóstico Tributário Gratuito para confirmar essa redução!`
     );
 
-    window.open(`https://wa.me/55219964476004?text=${message}`, '_blank');
+    window.open(`https://wa.me/5521979741307?text=${message}`, '_blank');
   };
 
   return (

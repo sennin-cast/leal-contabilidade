@@ -28,7 +28,7 @@ export const WhatsAppFloatingButton: React.FC = () => {
 
       {/* Pulsing circular button */}
       <a
-        href="https://wa.me/55219964476004?text=Ol%C3%A1!%20Gostaria%20de%20falar%20com%20um%20contador%20da%20Leal%20Assessoria%20Cont%C3%A1bil."
+        href="https://wa.me/5521979741307?text=Ol%C3%A1!%20Gostaria%20de%20falar%20com%20um%20contador%20da%20Leal%20Assessoria%20Cont%C3%A1bil."
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Falar no WhatsApp oficial da Leal Contábil"

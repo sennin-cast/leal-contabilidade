@@ -27,13 +27,13 @@ export const Topbar: React.FC = () => {
           </span>
           <span className="hidden sm:inline text-slate-600">|</span>
           <a
-            href="https://wa.me/55219964476004?text=Ol%C3%A1!%20Gostaria%20de%20um%20diagn%C3%B3stico%20cont%C3%A1bil%20para%20minha%20empresa."
+            href="https://wa.me/5521979741307?text=Ol%C3%A1!%20Gostaria%20de%20um%20diagn%C3%B3stico%20cont%C3%A1bil%20para%20minha%20empresa."
             target="_blank"
             rel="noopener noreferrer"
             className="text-slate-200 hover:text-brand-gold-400 flex items-center gap-1.5 font-semibold transition-colors"
           >
             <PhoneCall className="w-3 h-3 text-brand-gold-400" />
-            <span>(21) 99644-76004</span>
+            <span>(21) 97974-1307</span>
           </a>
         </div>
       </div>

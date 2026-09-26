@@ -80,12 +80,12 @@ export const LocationSection: React.FC = () => {
                 <div>
                   <strong className="text-white block font-semibold">WhatsApp & Telefone:</strong>
                   <a
-                    href="https://wa.me/55219964476004?text=Ol%C3%A1!%20Gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20a%20Leal%20Assessoria%20Cont%C3%A1bil."
+                    href="https://wa.me/5521979741307?text=Ol%C3%A1!%20Gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20a%20Leal%20Assessoria%20Cont%C3%A1bil."
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-brand-gold-300 hover:underline font-bold text-base block"
                   >
-                    (21) 99644-76004
+                    (21) 97974-1307
                   </a>
                   <span className="text-xs text-slate-400">Atendimento imediato em até 15 minutos</span>
                 </div>

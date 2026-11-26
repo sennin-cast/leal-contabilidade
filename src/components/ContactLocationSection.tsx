@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Clock, Info, Mail, MapPin, Navigation, Phone } from 'lucide-react';
+import { Clock, Mail, MapPin, MessageCircle, Navigation, Phone } from 'lucide-react';
 import { siteConfig, buildWhatsAppUrl } from '../config/siteConfig';
 import { useReveal } from '../hooks/useReveal';
 
@@ -19,19 +19,34 @@ export const ContactLocationSection: React.FC = () => {
     message: '',
   });
   const [error, setError] = useState<string>('');
-  const [validated, setValidated] = useState<boolean>(false);
+  const [submittedUrl, setSubmittedUrl] = useState<string>('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
-    setValidated(false);
+    setSubmittedUrl('');
 
     if (!form.name.trim() || !form.phone.trim() || !form.message.trim()) {
       setError('Por favor, preencha nome, telefone e mensagem antes de continuar.');
       return;
     }
 
-    setValidated(true);
+    const targetNumber =
+      form.area === 'Contabilidade'
+        ? siteConfig.contact.accountingWhatsappNumber
+        : siteConfig.contact.psychologyWhatsappNumber;
+
+    const text = [
+      `Olá! Gostaria de atendimento na área de *${form.area}* da LN INTEGRA.`,
+      '',
+      `*Nome:* ${form.name.trim()}`,
+      `*Telefone/WhatsApp:* ${form.phone.trim()}`,
+      `*Mensagem:* ${form.message.trim()}`,
+    ].join('\n');
+
+    const whatsappUrl = buildWhatsAppUrl(targetNumber, text);
+    setSubmittedUrl(whatsappUrl);
+    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
   };
 
   const mainWhatsappUrl = buildWhatsAppUrl(
@@ -246,19 +261,27 @@ export const ContactLocationSection: React.FC = () => {
                 </p>
               )}
 
-              {validated && (
+              {submittedUrl && (
                 <div
                   role="status"
                   className="flex items-start gap-2.5 text-xs text-[#34322F] bg-[#E9E3D9]/70 border border-[#C2A36A]/60 px-4 py-3 rounded-lg"
                 >
-                  <Info className="w-4 h-4 text-[#A48650] flex-shrink-0 mt-0.5" />
+                  <MessageCircle className="w-4 h-4 text-[#A48650] flex-shrink-0 mt-0.5" />
                   <div className="space-y-1">
                     <p className="font-semibold">
-                      Dados validados. Integração de envio pendente antes da publicação.
+                      Redirecionando para o WhatsApp da área de {form.area}.
                     </p>
                     <p className="text-[#766044]">
-                      Enquanto o endpoint de e-mail não estiver conectado, você pode falar
-                      diretamente pelo WhatsApp da área de {form.area}.
+                      Se a janela não abrir automaticamente,{' '}
+                      <a
+                        href={submittedUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-semibold text-[#34322F] underline underline-offset-2 hover:text-[#A48650]"
+                      >
+                        clique aqui para enviar pelo WhatsApp
+                      </a>
+                      .
                     </p>
                   </div>
                 </div>
@@ -266,9 +289,10 @@ export const ContactLocationSection: React.FC = () => {
 
               <button
                 type="submit"
-                className="w-full py-3.5 px-6 rounded-lg bg-[#34322F] text-[#F8F6F0] text-sm font-medium hover:bg-[#766044] transition-colors"
+                className="w-full py-3.5 px-6 rounded-lg bg-[#34322F] text-[#F8F6F0] text-sm font-medium hover:bg-[#766044] transition-colors inline-flex items-center justify-center gap-2"
               >
-                Validar e enviar mensagem
+                <MessageCircle className="w-4 h-4 text-[#C2A36A]" />
+                <span>Enviar mensagem pelo WhatsApp</span>
               </button>
             </form>
           </div>

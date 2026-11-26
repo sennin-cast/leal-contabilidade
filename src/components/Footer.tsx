@@ -1,135 +1,132 @@
-import React from 'react';
-import { ShieldCheck, Phone, MapPin, Mail, Lock, Code, ExternalLink } from 'lucide-react';
+import React, { useState } from 'react';
+import { X } from 'lucide-react';
+import { siteConfig } from '../config/siteConfig';
 
 export const Footer: React.FC = () => {
+  const [privacyOpen, setPrivacyOpen] = useState(false);
+
   return (
-    <footer className="bg-brand-navy-950 text-slate-400 text-xs border-t border-brand-gold-500/20 pt-16 pb-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-        
-        {/* Top Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12">
-          
-          {/* Col 1: Brand & Bio */}
-          <div className="lg:col-span-4 space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg overflow-hidden border border-brand-gold-500/50">
-                <img src="./Logo.jpg" alt="Leal Assessoria Contábil" className="w-full h-full object-cover" />
+    <>
+      <footer className="bg-[#E9E3D9]/55 border-t border-[#E9E3D9] pt-14 pb-10 text-[#766044]">
+        <div className="max-w-7xl mx-auto px-5 sm:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-[#B7AEA1]/40">
+            {/* Brand */}
+            <div className="md:col-span-5 space-y-4">
+              <div className="flex items-center gap-3.5">
+                <div className="w-11 h-11 rounded-full overflow-hidden border border-[#C2A36A]/60 bg-[#F8F6F0]">
+                  <img
+                    src={siteConfig.brand.logoPath}
+                    alt="Logo LN INTEGRA"
+                    className="w-full h-full object-cover scale-125"
+                  />
+                </div>
+                <div>
+                  <div className="font-serif text-xl font-semibold tracking-[0.14em] text-[#34322F]">
+                    LN INTEGRA
+                  </div>
+                  <div className="text-[10px] uppercase tracking-[0.2em] text-[#766044]">
+                    Contabilidade e Psicologia
+                  </div>
+                </div>
               </div>
-              <div>
-                <span className="font-serif text-lg font-bold text-white tracking-wider block">LEAL</span>
-                <span className="text-[10px] tracking-[0.2em] font-semibold text-brand-gold-400 uppercase">
-                  Assessoria Contábil
-                </span>
-              </div>
+              <p className="text-sm leading-relaxed max-w-sm">
+                LN INTEGRA — Contabilidade e Psicologia. Confiança, profissionalismo e acolhimento.
+              </p>
             </div>
 
-            <p className="text-slate-400 text-xs leading-relaxed">
-              Desde 1989 oferecendo segurança fiscal, redução legal de impostos (elisão preventiva) e contabilidade estratégica para empresas em Nova Iguaçu, no Rio de Janeiro e em todo o Brasil.
+            {/* Navigation */}
+            <div className="md:col-span-3 space-y-3">
+              <h3 className="font-serif text-lg text-[#34322F]">Navegação</h3>
+              <ul className="space-y-2 text-sm">
+                <li>
+                  <a href="#inicio" className="hover:text-[#A48650] transition-colors">
+                    Início
+                  </a>
+                </li>
+                <li>
+                  <a href="#sobre" className="hover:text-[#A48650] transition-colors">
+                    Sobre nós
+                  </a>
+                </li>
+                <li>
+                  <a href="#contabilidade" className="hover:text-[#A48650] transition-colors">
+                    Contabilidade
+                  </a>
+                </li>
+                <li>
+                  <a href="#psicologia" className="hover:text-[#A48650] transition-colors">
+                    Psicologia
+                  </a>
+                </li>
+                <li>
+                  <a href="#espaco" className="hover:text-[#A48650] transition-colors">
+                    Nosso espaço
+                  </a>
+                </li>
+                <li>
+                  <a href="#contato" className="hover:text-[#A48650] transition-colors">
+                    Contato
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Contacts */}
+            <div className="md:col-span-4 space-y-3">
+              <h3 className="font-serif text-lg text-[#34322F]">Contato</h3>
+              <p className="text-sm leading-relaxed">
+                {siteConfig.contact.address.fullFormatted}
+              </p>
+              <p className="text-sm">WhatsApp: {siteConfig.contact.mainWhatsappDisplay}</p>
+              <button
+                type="button"
+                onClick={() => setPrivacyOpen(true)}
+                className="text-xs underline underline-offset-4 hover:text-[#34322F] transition-colors"
+              >
+                Política de Privacidade
+              </button>
+            </div>
+          </div>
+
+          <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+            <p>© {new Date().getFullYear()} LN INTEGRA — Contabilidade e Psicologia. Todos os direitos reservados.</p>
+            <p className="text-[#766044]">Nova Iguaçu — Rio de Janeiro</p>
+          </div>
+        </div>
+      </footer>
+
+      {/* Privacy Policy Modal */}
+      {privacyOpen && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Política de Privacidade"
+          className="fixed inset-0 z-50 bg-[#34322F]/60 backdrop-blur-sm flex items-center justify-center p-4"
+          onClick={() => setPrivacyOpen(false)}
+        >
+          <div
+            className="bg-[#F8F6F0] border border-[#E9E3D9] rounded-2xl max-w-lg w-full p-7 space-y-4 shadow-editorial"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between border-b border-[#E9E3D9] pb-3">
+              <h3 className="font-serif text-2xl text-[#34322F]">Política de Privacidade</h3>
+              <button
+                type="button"
+                onClick={() => setPrivacyOpen(false)}
+                aria-label="Fechar Política de Privacidade"
+                className="p-1.5 rounded-lg text-[#766044] hover:text-[#34322F]"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            <p className="text-sm text-[#766044] leading-relaxed">
+              A LN INTEGRA — Contabilidade e Psicologia respeita a privacidade de seus visitantes e
+              trata quaisquer informações de contato fornecidas exclusivamente para fins de
+              atendimento institucional, em conformidade com a Lei Geral de Proteção de Dados (LGPD).
             </p>
-
-            <div className="p-3.5 rounded-xl bg-brand-navy-900 border border-slate-800 text-[11px] space-y-1 text-slate-300">
-              <div className="font-semibold text-white flex items-center gap-1.5">
-                <ShieldCheck className="w-3.5 h-3.5 text-brand-gold-400" />
-                <span>Responsáveis Técnicos Habilitados:</span>
-              </div>
-              <div>&bull; Ademar Rodrigues Leal &ndash; CRC/RJ 062692/O-8</div>
-              <div>&bull; Lucas Heckert Leal &ndash; CRC/RJ 119264/O-8</div>
-            </div>
-          </div>
-
-          {/* Col 2: Navigation Links */}
-          <div className="lg:col-span-2 space-y-3">
-            <h4 className="text-sm font-bold text-white uppercase tracking-wider">
-              Navegação
-            </h4>
-            <ul className="space-y-2">
-              <li><a href="#especialidades" className="hover:text-brand-gold-300 transition-colors">Especialidades</a></li>
-              <li><a href="#servicos" className="hover:text-brand-gold-300 transition-colors">Serviços Oficiais</a></li>
-              <li><a href="#como-funciona" className="hover:text-brand-gold-300 transition-colors">Como Funciona</a></li>
-              <li><a href="#calculadora" className="hover:text-brand-gold-300 transition-colors">Calculadora Fiscal</a></li>
-              <li><a href="#historia" className="hover:text-brand-gold-300 transition-colors">Nossa História</a></li>
-              <li><a href="#depoimentos" className="hover:text-brand-gold-300 transition-colors">Depoimentos</a></li>
-              <li><a href="#localizacao" className="hover:text-brand-gold-300 transition-colors">Localização</a></li>
-              <li><a href="#faq" className="hover:text-brand-gold-300 transition-colors">FAQ</a></li>
-            </ul>
-          </div>
-
-          {/* Col 3: Nichos */}
-          <div className="lg:col-span-3 space-y-3">
-            <h4 className="text-sm font-bold text-white uppercase tracking-wider">
-              Segmentos Atendidos
-            </h4>
-            <ul className="space-y-2 text-slate-400">
-              <li>&bull; Médicos, Clínicas & Saúde (Fator R / Equiparação)</li>
-              <li>&bull; Tecnologia, TI & Startups (Anexo III 6%)</li>
-              <li>&bull; E-commerce, Dropshipping & Marketplaces</li>
-              <li>&bull; Sociedades Unipessoais de Advocacia (SUA)</li>
-              <li>&bull; Engenheiros, Arquitetos & Consultores</li>
-              <li>&bull; Comércio Varejista & PMEs em Geral</li>
-            </ul>
-          </div>
-
-          {/* Col 4: Contact & Office */}
-          <div className="lg:col-span-3 space-y-3">
-            <h4 className="text-sm font-bold text-white uppercase tracking-wider">
-              Contato Oficial
-            </h4>
-            <div className="space-y-2 text-xs">
-              <div className="flex items-start gap-2">
-                <MapPin className="w-3.5 h-3.5 text-brand-gold-400 shrink-0 mt-0.5" />
-                <span>Rua Otávio Tarquino, 507, Loja – Centro, Nova Iguaçu - RJ, CEP: 26210-171</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Phone className="w-3.5 h-3.5 text-brand-gold-400 shrink-0" />
-                <a
-                  href="https://wa.me/5521979741307"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-brand-gold-300 font-bold text-slate-200"
-                >
-                  (21) 97974-1307
-                </a>
-              </div>
-              <div className="flex items-center gap-2">
-                <Lock className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                <span>Conformidade com LGPD (Lei 13.709/2018)</span>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        {/* Regulatory disclaimer */}
-        <div className="pt-8 border-t border-slate-800 text-[11px] text-slate-500 leading-relaxed text-center sm:text-left space-y-2">
-          <p>
-            <strong>Conformidade Legal & Ética CFC / CRC-RJ:</strong> Todas as atividades desenvolvidas pela Leal Assessoria Contábil respeitam integralmente o Código de Ética Profissional do Contador (Resolução CFC nº 803/1996) e a NBC PG 01. As reduções tributárias descritas neste site decorrem exclusivamente de práticas legais de elisão fiscal e planejamento tributário preventivo admitidas pela legislação brasileira, sem garantias de não recolhimento de tributos devidos.
-          </p>
-        </div>
-
-        {/* Bottom Credits & Copyright */}
-        <div className="pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
-          <div>
-            &copy; {new Date().getFullYear()} Leal Assessoria Contábil. Todos os direitos reservados.
-          </div>
-
-          {/* Developer credit */}
-          <div className="flex items-center gap-2 p-2 rounded-lg bg-brand-navy-900 border border-slate-800 text-slate-400">
-            <Code className="w-3.5 h-3.5 text-brand-gold-400" />
-            <span>Desenvolvido por:</span>
-            <a
-              href="https://wa.me/5521979451436?text=Ol%C3%A1%20Esdras!%20Vi%20o%20site%20da%20Leal%20Assessoria%20Cont%C3%A1bil%20que%20voc%C3%AA%20desenvolveu."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-brand-gold-300 hover:text-white font-semibold transition-colors flex items-center gap-1"
-            >
-              <span>Esdras Dantas</span>
-              <span className="text-slate-500">(21) 97945-1436</span>
-              <ExternalLink className="w-2.5 h-2.5 ml-0.5 opacity-70" />
-            </a>
           </div>
         </div>
-
-      </div>
-    </footer>
+      )}
+    </>
   );
 };

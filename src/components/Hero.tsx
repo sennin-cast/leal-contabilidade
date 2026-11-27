@@ -21,120 +21,101 @@ export const Hero: React.FC = () => {
   return (
     <section
       id="inicio"
-      className="surface-dark relative min-h-[92vh] pt-28 pb-16 sm:pt-32 sm:pb-24 flex items-center bg-[#1C1814] text-[#F5EFE6] overflow-hidden"
+      className="surface-dark relative min-h-[88vh] sm:min-h-[92vh] pt-32 pb-16 sm:pt-36 sm:pb-24 flex items-center bg-[#1C1814] text-[#F5EFE6] overflow-hidden"
     >
-      {/* Blurred Watermark Background: Professional at Desk */}
+      {/* Full-bleed Corporate Office Background with Subtle Blur & Espresso Scrim */}
       <div aria-hidden="true" className="absolute inset-0 z-0 overflow-hidden">
         <img
-          src="./images/hero-profissional-mesa.jpg"
+          src="./images/hero-escritorio.jpg"
           alt=""
-          className="w-full h-full object-cover object-center scale-105 blur-[3px] opacity-25"
+          fetchPriority="high"
+          decoding="async"
+          className="w-full h-full object-cover object-[62%_center] sm:object-center scale-105 blur-[2.5px] opacity-55"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#181512]/95 via-[#1C1814]/85 to-[#1C1814]/65" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#181512]/90 via-transparent to-[#181512]/50" />
+        <div className="absolute inset-0 bg-[#181512]/45 sm:bg-[#181512]/25" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#181512]/95 via-[#181512]/80 to-[#181512]/45" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#181512]/90 via-transparent to-[#181512]/60" />
       </div>
 
       <div className="max-w-7xl mx-auto px-5 sm:px-8 w-full relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-          {/* Left Column */}
-          <div className="lg:col-span-6 space-y-6">
-            <h1 className="hero-enter font-display text-4xl sm:text-5xl lg:text-[3.85rem] font-semibold text-[#F5EFE6] leading-[1.04] tracking-[-0.03em]">
-              Contabilidade e Psicologia com{' '}
-              <span className="text-[#D4AF6A]">clareza, presença</span> e cuidado real.
-            </h1>
+        <div className="max-w-3xl space-y-7">
+          <h1 className="hero-enter font-display text-4xl sm:text-5xl lg:text-[4.15rem] font-semibold text-[#F5EFE6] leading-[1.04] tracking-[-0.03em]">
+            Contabilidade e Psicologia com{' '}
+            <span className="text-[#D4AF6A]">clareza, presença</span> e cuidado real.
+          </h1>
 
-            <p className="hero-enter-delay-1 text-base sm:text-lg text-[#E4DAC9] leading-relaxed max-w-[58ch]">
-              No Centro de Nova Iguaçu, reunimos orientação contábil segura para empresas e
-              acolhimento psicológico individualizado no mesmo endereço — com autonomia técnica
-              e atendimento direto.
-            </p>
+          <p className="hero-enter-delay-1 text-base sm:text-lg lg:text-[1.125rem] text-[#E4DAC9] leading-relaxed max-w-[56ch]">
+            No Centro de Nova Iguaçu, reunimos orientação contábil segura para empresas e
+            acolhimento psicológico individualizado no mesmo endereço — com autonomia técnica
+            e atendimento direto.
+          </p>
 
-            {/* Interactive Area Switcher + Primary Action */}
-            <div className="hero-enter-delay-2 space-y-4 pt-2">
-              <div
-                role="group"
-                aria-label="Escolha a área para atendimento imediato"
-                className="inline-flex p-1 rounded-xl bg-[#2A241E] border border-[#C6A15B]/35"
+          {/* Interactive Area Switcher + Primary Actions */}
+          <div className="hero-enter-delay-2 space-y-4 pt-1">
+            <div
+              role="group"
+              aria-label="Escolha a área para atendimento imediato"
+              className="inline-flex p-1 rounded-xl bg-[#181512]/75 backdrop-blur-md border border-[#C6A15B]/35 shadow-soft"
+            >
+              <button
+                type="button"
+                onClick={() => setArea('contabilidade')}
+                aria-pressed={area === 'contabilidade'}
+                className={`px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold active:scale-[0.98] transition-[background-color,color,transform] cursor-pointer ${
+                  area === 'contabilidade'
+                    ? 'bg-[#C6A15B] text-[#181512] shadow-sm'
+                    : 'text-[#E4DAC9] hover:text-[#F5EFE6]'
+                }`}
               >
-                <button
-                  type="button"
-                  onClick={() => setArea('contabilidade')}
-                  aria-pressed={area === 'contabilidade'}
-                  className={`px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-colors cursor-pointer ${
-                    area === 'contabilidade'
-                      ? 'bg-[#C6A15B] text-[#181512]'
-                      : 'text-[#E4DAC9] hover:text-[#F5EFE6]'
-                  }`}
-                >
-                  Contabilidade
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setArea('psicologia')}
-                  aria-pressed={area === 'psicologia'}
-                  className={`px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-colors cursor-pointer ${
-                    area === 'psicologia'
-                      ? 'bg-[#C6A15B] text-[#181512]'
-                      : 'text-[#E4DAC9] hover:text-[#F5EFE6]'
-                  }`}
-                >
-                  Psicologia
-                </button>
-              </div>
-
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
-                <a
-                  href={whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#C6A15B] text-[#181512] text-sm font-bold hover:bg-[#D4AF6A] active:scale-[0.98] transition-[background-color,transform] duration-200 shadow-editorial cursor-pointer"
-                >
-                  <MessageCircle className="w-4 h-4 text-[#181512]" aria-hidden="true" />
-                  <span>
-                    Falar com {area === 'contabilidade' ? 'Contabilidade' : 'Psicologia'}
-                  </span>
-                </a>
-
-                <a
-                  href="#contato"
-                  className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl border border-[#C6A15B]/60 text-[#F5EFE6] bg-[#2A241E]/75 hover:bg-[#3A3128] active:scale-[0.98] text-sm font-semibold transition-[background-color,transform] duration-200 cursor-pointer"
-                >
-                  <span>Enviar mensagem</span>
-                  <ArrowDownRight className="w-4 h-4 text-[#D4AF6A]" aria-hidden="true" />
-                </a>
-              </div>
+                Contabilidade
+              </button>
+              <button
+                type="button"
+                onClick={() => setArea('psicologia')}
+                aria-pressed={area === 'psicologia'}
+                className={`px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold active:scale-[0.98] transition-[background-color,color,transform] cursor-pointer ${
+                  area === 'psicologia'
+                    ? 'bg-[#C6A15B] text-[#181512] shadow-sm'
+                    : 'text-[#E4DAC9] hover:text-[#F5EFE6]'
+                }`}
+              >
+                Psicologia
+              </button>
             </div>
 
-            {/* Verified Trust & Location Strip */}
-            <div className="hero-enter-delay-2 pt-5 border-t border-[#C6A15B]/25 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-[#D8CCB8]">
-              <span className="inline-flex items-center gap-1.5 font-medium text-[#F5EFE6]">
-                <MapPin className="w-3.5 h-3.5 text-[#D4AF6A] flex-shrink-0" aria-hidden="true" />
-                <span>Rua Otávio Tarquínio, 74 · Sala 201 · Centro, Nova Iguaçu</span>
-              </span>
-              <span className="inline-flex items-center gap-1.5 tabular-nums">
-                <ShieldCheck className="w-3.5 h-3.5 text-[#D4AF6A] flex-shrink-0" aria-hidden="true" />
-                <span>CRC RJ &amp; CRP RJ ativos</span>
-              </span>
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#C6A15B] text-[#181512] text-sm font-bold hover:bg-[#D4AF6A] active:scale-[0.98] transition-[background-color,transform] duration-200 shadow-editorial cursor-pointer"
+              >
+                <MessageCircle className="w-4 h-4 text-[#181512]" aria-hidden="true" />
+                <span>
+                  Falar com {area === 'contabilidade' ? 'Contabilidade' : 'Psicologia'}
+                </span>
+              </a>
+
+              <a
+                href="#contato"
+                className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl border border-[#C6A15B]/55 text-[#F5EFE6] bg-[#181512]/70 backdrop-blur-md hover:bg-[#2A241E]/90 active:scale-[0.98] text-sm font-semibold transition-[background-color,border-color,transform] duration-200 cursor-pointer"
+              >
+                <span>Enviar mensagem</span>
+                <ArrowDownRight className="w-4 h-4 text-[#D4AF6A]" aria-hidden="true" />
+              </a>
             </div>
           </div>
 
-          {/* Right Column: Clean Office Photograph */}
-          <div className="lg:col-span-6">
-            <div className="relative max-w-xl mx-auto lg:ml-auto rounded-2xl overflow-hidden border border-[#C6A15B]/35 shadow-editorial bg-[#26201A]">
-              <img
-                src="./images/office/sala-acolhimento.jpg"
-                alt="Sala de atendimento e acolhimento do escritório LN INTEGRA em Nova Iguaçu"
-                fetchPriority="high"
-                decoding="async"
-                className="w-full h-[360px] sm:h-[450px] object-cover object-center"
-              />
-              <div className="bg-[#1C1814]/95 border-t border-[#C6A15B]/30 px-6 py-4 flex items-center justify-between gap-4">
-                <p className="text-sm text-[#E4DAC9] leading-snug">
-                  <span className="font-semibold text-[#F5EFE6]">Sala 201 · Nova Iguaçu — </span>
-                  Ambiente preparado para atendimento presencial com discrição e conforto.
-                </p>
-              </div>
-            </div>
+          {/* Verified Trust & Location Strip */}
+          <div className="hero-enter-delay-2 pt-6 border-t border-[#C6A15B]/25 flex flex-wrap items-center gap-x-6 gap-y-2.5 text-xs sm:text-[13px] text-[#E4DAC9]">
+            <span className="inline-flex items-center gap-1.5 font-medium text-[#F5EFE6]">
+              <MapPin className="w-3.5 h-3.5 text-[#D4AF6A] flex-shrink-0" aria-hidden="true" />
+              <span>Rua Otávio Tarquínio, 74 · Sala 201 · Centro, Nova Iguaçu</span>
+            </span>
+            <span className="inline-flex items-center gap-1.5 tabular-nums">
+              <ShieldCheck className="w-3.5 h-3.5 text-[#D4AF6A] flex-shrink-0" aria-hidden="true" />
+              <span>CRC RJ &amp; CRP RJ ativos</span>
+            </span>
           </div>
         </div>
       </div>

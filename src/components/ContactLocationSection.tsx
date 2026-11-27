@@ -1,33 +1,105 @@
 import React, { useState } from 'react';
-import { Clock, Mail, MapPin, MessageCircle, Navigation, Phone } from 'lucide-react';
+import {
+  Check,
+  Clock,
+  Copy,
+  ExternalLink,
+  Mail,
+  MapPin,
+  MessageCircle,
+  Navigation,
+  Phone,
+} from 'lucide-react';
 import { siteConfig, buildWhatsAppUrl } from '../config/siteConfig';
-import { useReveal } from '../hooks/useReveal';
 
 interface FormState {
   name: string;
   phone: string;
   area: 'Contabilidade' | 'Psicologia';
+  subject: string;
   message: string;
 }
 
+const quickSubjects: { label: string; area: 'Contabilidade' | 'Psicologia'; template: string }[] = [
+  {
+    label: 'Acompanhamento contábil',
+    area: 'Contabilidade',
+    template: 'Gostaria de informações sobre acompanhamento contábil para minha empresa.',
+  },
+  {
+    label: 'Orientação fiscal',
+    area: 'Contabilidade',
+    template: 'Preciso de uma orientação contábil/fiscal e gostaria de agendar uma conversa.',
+  },
+  {
+    label: 'Atendimento psicológico',
+    area: 'Psicologia',
+    template: 'Gostaria de saber sobre disponibilidade e horários para atendimento em Psicologia.',
+  },
+  {
+    label: 'Agendar visita presencial',
+    area: 'Contabilidade',
+    template: 'Gostaria de agendar uma visita presencial na Sala 201 no Centro de Nova Iguaçu.',
+  },
+];
+
+function formatPhoneInput(raw: string): string {
+  const digits = raw.replace(/\D/g, '').slice(0, 11);
+  if (digits.length <= 2) return digits;
+  if (digits.length <= 6) return `(${digits.slice(0, 2)}) ${digits.slice(2)}`;
+  if (digits.length <= 10) {
+    return `(${digits.slice(0, 2)}) ${digits.slice(2, 6)}-${digits.slice(6)}`;
+  }
+  return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7)}`;
+}
+
 export const ContactLocationSection: React.FC = () => {
-  const { ref, isVisible } = useReveal<HTMLElement>();
   const [form, setForm] = useState<FormState>({
     name: '',
     phone: '',
     area: 'Contabilidade',
+    subject: '',
     message: '',
   });
   const [error, setError] = useState<string>('');
   const [submittedUrl, setSubmittedUrl] = useState<string>('');
+  const [copiedAddress, setCopiedAddress] = useState(false);
+
+  const handleCopyAddress = async () => {
+    try {
+      await navigator.clipboard.writeText(siteConfig.contact.address.fullFormatted);
+      setCopiedAddress(true);
+      window.setTimeout(() => setCopiedAddress(false), 2500);
+    } catch {
+      // Clipboard fallback not needed; link to Google Maps remains available
+    }
+  };
+
+  const handleQuickSubject = (item: (typeof quickSubjects)[number]) => {
+    setForm((prev) => ({
+      ...prev,
+      area: item.area,
+      subject: item.label,
+      message: prev.message.trim() ? prev.message : item.template,
+    }));
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
     setSubmittedUrl('');
 
-    if (!form.name.trim() || !form.phone.trim() || !form.message.trim()) {
-      setError('Por favor, preencha nome, telefone e mensagem antes de continuar.');
+    if (!form.name.trim()) {
+      setError('Informe seu nome completo para sabermos com quem estamos falando.');
+      return;
+    }
+    const phoneDigits = form.phone.replace(/\D/g, '');
+    if (phoneDigits.length < 10) {
+      setError('Informe um telefone ou WhatsApp válido com DDD (ex.: (21) 99999-9999).');
+      return;
+    }
+    if (!form.message.trim()) {
+      setError('Escreva uma breve mensagem descrevendo como podemos ajudar.');
       return;
     }
 
@@ -38,11 +110,14 @@ export const ContactLocationSection: React.FC = () => {
 
     const text = [
       `Olá! Gostaria de atendimento na área de *${form.area}* da LN INTEGRA.`,
+      form.subject ? `*Assunto:* ${form.subject}` : '',
       '',
       `*Nome:* ${form.name.trim()}`,
       `*Telefone/WhatsApp:* ${form.phone.trim()}`,
       `*Mensagem:* ${form.message.trim()}`,
-    ].join('\n');
+    ]
+      .filter(Boolean)
+      .join('\n');
 
     const whatsappUrl = buildWhatsAppUrl(targetNumber, text);
     setSubmittedUrl(whatsappUrl);
@@ -57,112 +132,19 @@ export const ContactLocationSection: React.FC = () => {
   return (
     <section
       id="contato"
-      ref={ref}
-      className={`py-20 sm:py-28 bg-[#D8CCB8] border-t border-[#C4B69F] reveal-section ${
-        isVisible ? 'is-visible' : ''
-      }`}
+      className="py-20 sm:py-28 bg-[#E4DAC9] border-t border-[#C4B69F]"
     >
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
-        <div className="max-w-2xl mb-14 space-y-4">
-          <div className="section-eyebrow">
-            <span className="section-eyebrow-line" />
-            <span className="section-eyebrow-text">Contato &amp; Localização</span>
-          </div>
-          <h2 className="section-heading">Onde nos encontrar e como falar conosco.</h2>
+        <div className="max-w-2xl mb-12 space-y-3">
+          <h2 className="section-heading">Onde estamos e como falar conosco</h2>
+          <p className="text-base text-[#3A3128] leading-relaxed">
+            Envie sua mensagem direcionada pelo formulário ou utilize o mapa para chegar ao nosso
+            escritório no Centro de Nova Iguaçu.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12">
-          {/* Left: Info + Google Maps */}
-          <div className="lg:col-span-6 space-y-6">
-            <div className="bg-[#EDE5D8] border border-[#C4B69F] rounded-2xl p-7 space-y-6 shadow-soft">
-              {/* Address */}
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-lg border border-[#7A5B22]/45 bg-[#E4DAC9] flex items-center justify-center text-[#7A5B22] flex-shrink-0">
-                  <MapPin className="w-5 h-5 stroke-[1.75]" />
-                </div>
-                <div className="space-y-2">
-                  <h3 className="font-serif text-xl font-semibold text-[#1A1714]">Endereço</h3>
-                  <p className="text-sm text-[#3A3128] leading-relaxed">
-                    {siteConfig.contact.address.fullFormatted}
-                  </p>
-                  <a
-                    href={siteConfig.contact.address.googleMapsUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-xs font-bold text-[#1A1714] hover:text-[#7A5B22] border-b border-[#7A5B22] pb-0.5 transition-colors cursor-pointer"
-                  >
-                    <Navigation className="w-3.5 h-3.5 text-[#7A5B22]" />
-                    <span>Como chegar no Google Maps</span>
-                  </a>
-                </div>
-              </div>
-
-              {/* WhatsApp / Phones */}
-              <div className="flex items-start gap-4 pt-5 border-t border-[#C4B69F]">
-                <div className="w-10 h-10 rounded-lg border border-[#7A5B22]/45 bg-[#E4DAC9] flex items-center justify-center text-[#7A5B22] flex-shrink-0">
-                  <Phone className="w-5 h-5 stroke-[1.75]" />
-                </div>
-                <div className="space-y-1.5">
-                  <h3 className="font-serif text-xl font-semibold text-[#1A1714]">
-                    WhatsApp &amp; Telefones
-                  </h3>
-                  <p className="text-sm text-[#3A3128]">
-                    Principal:{' '}
-                    <a
-                      href={mainWhatsappUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="font-bold text-[#1A1714] hover:text-[#7A5B22] transition-colors cursor-pointer"
-                    >
-                      {siteConfig.contact.mainWhatsappDisplay}
-                    </a>
-                  </p>
-                  <p className="text-xs text-[#3A3128] font-medium">
-                    Contabilidade: (21) 97974-1307 · (21) 97497-7021 | Psicologia: (21) 97427-1660
-                  </p>
-                </div>
-              </div>
-
-              {/* Editable Pending Fields: Hours & Email */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-5 border-t border-[#C4B69F]">
-                <div className="flex items-start gap-3">
-                  <Clock className="w-4 h-4 text-[#7A5B22] mt-1 flex-shrink-0" />
-                  <div>
-                    <p className="text-xs font-bold uppercase tracking-wider text-[#1A1714]">
-                      Horário de Atendimento
-                    </p>
-                    <p className="text-xs text-[#3A3128] mt-1">
-                      {siteConfig.contact.businessHours || 'Sob agendamento via WhatsApp'}
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Mail className="w-4 h-4 text-[#7A5B22] mt-1 flex-shrink-0" />
-                  <div>
-                    <p className="text-xs font-bold uppercase tracking-wider text-[#1A1714]">
-                      E-mail Institucional
-                    </p>
-                    <p className="text-xs text-[#3A3128] mt-1">
-                      {siteConfig.contact.email || 'A confirmar antes da publicação'}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Google Maps Embed */}
-            <div className="rounded-2xl overflow-hidden border border-[#C4B69F] bg-[#EDE5D8] h-64 sm:h-72 shadow-soft">
-              <iframe
-                title="Mapa de localização LN INTEGRA — Rua Otávio Tarquínio, 74, Centro, Nova Iguaçu"
-                src={siteConfig.contact.address.googleMapsEmbedUrl}
-                className="w-full h-full border-0"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
-            </div>
-          </div>
-
-          {/* Right: Contact Form */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+          {/* Left: Smart Contact Form */}
           <div className="lg:col-span-6">
             <form
               onSubmit={handleSubmit}
@@ -170,30 +152,52 @@ export const ContactLocationSection: React.FC = () => {
               className="bg-[#EDE5D8] border border-[#C4B69F] rounded-2xl p-7 sm:p-9 space-y-5 shadow-soft"
             >
               <div className="space-y-1">
-                <h3 className="font-serif text-2xl sm:text-3xl font-semibold text-[#1A1714]">
+                <h3 className="font-display text-2xl sm:text-3xl font-semibold text-[#181512]">
                   Envie uma mensagem
                 </h3>
                 <p className="text-sm text-[#3A3128]">
-                  Selecione a área desejada e descreva brevemente como podemos ajudar.
+                  Escolha um assunto rápido ou preencha os campos abaixo.
                 </p>
+              </div>
+
+              {/* Quick Subject Chips */}
+              <div className="flex flex-wrap gap-2" aria-label="Assuntos rápidos">
+                {quickSubjects.map((item) => {
+                  const isActive = form.subject === item.label;
+                  return (
+                    <button
+                      key={item.label}
+                      type="button"
+                      onClick={() => handleQuickSubject(item)}
+                      className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-colors cursor-pointer ${
+                        isActive
+                          ? 'bg-[#1C1814] text-[#F5EFE6] border-[#1C1814]'
+                          : 'bg-[#E4DAC9] text-[#181512] border-[#C4B69F] hover:border-[#7A5B22]'
+                      }`}
+                    >
+                      {item.label}
+                    </button>
+                  );
+                })}
               </div>
 
               <div>
                 <label
                   htmlFor="contact-name"
-                  className="block text-xs font-bold uppercase tracking-wider text-[#3A3128] mb-1.5"
+                  className="block text-xs font-bold text-[#181512] mb-1.5"
                 >
                   Nome completo
                 </label>
                 <input
                   id="contact-name"
                   type="text"
+                  autoComplete="name"
                   required
                   aria-invalid={Boolean(error && !form.name.trim())}
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  placeholder="Seu nome"
-                  className="w-full px-4 py-3 rounded-lg bg-[#E4DAC9]/75 border border-[#B5A58C] text-sm text-[#1A1714] placeholder-[#3A3128]/65 focus:border-[#7A5B22]"
+                  placeholder="Como prefere ser chamado(a)"
+                  className="w-full px-4 py-3 rounded-xl bg-[#E4DAC9]/80 border border-[#B5A58C] text-sm text-[#181512] placeholder-[#3A3128]/60 focus:border-[#7A5B22]"
                 />
               </div>
 
@@ -201,27 +205,30 @@ export const ContactLocationSection: React.FC = () => {
                 <div>
                   <label
                     htmlFor="contact-phone"
-                    className="block text-xs font-bold uppercase tracking-wider text-[#3A3128] mb-1.5"
+                    className="block text-xs font-bold text-[#181512] mb-1.5"
                   >
-                    Telefone / WhatsApp
+                    WhatsApp / Telefone
                   </label>
                   <input
                     id="contact-phone"
                     type="tel"
+                    autoComplete="tel"
                     required
-                    aria-invalid={Boolean(error && !form.phone.trim())}
+                    aria-invalid={Boolean(error && form.phone.replace(/\D/g, '').length < 10)}
                     value={form.phone}
-                    onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                    onChange={(e) =>
+                      setForm({ ...form, phone: formatPhoneInput(e.target.value) })
+                    }
                     placeholder="(21) 99999-9999"
-                    className="w-full px-4 py-3 rounded-lg bg-[#E4DAC9]/75 border border-[#B5A58C] text-sm text-[#1A1714] placeholder-[#3A3128]/65 focus:border-[#7A5B22]"
+                    className="w-full px-4 py-3 rounded-xl bg-[#E4DAC9]/80 border border-[#B5A58C] text-sm text-[#181512] placeholder-[#3A3128]/60 focus:border-[#7A5B22] tabular-nums"
                   />
                 </div>
                 <div>
                   <label
                     htmlFor="contact-area"
-                    className="block text-xs font-bold uppercase tracking-wider text-[#3A3128] mb-1.5"
+                    className="block text-xs font-bold text-[#181512] mb-1.5"
                   >
-                    Área de interesse
+                    Área de atendimento
                   </label>
                   <select
                     id="contact-area"
@@ -232,7 +239,7 @@ export const ContactLocationSection: React.FC = () => {
                         area: e.target.value as 'Contabilidade' | 'Psicologia',
                       })
                     }
-                    className="w-full px-4 py-3 rounded-lg bg-[#E4DAC9]/75 border border-[#B5A58C] text-sm text-[#1A1714] focus:border-[#7A5B22] cursor-pointer"
+                    className="w-full px-4 py-3 rounded-xl bg-[#E4DAC9]/80 border border-[#B5A58C] text-sm text-[#181512] focus:border-[#7A5B22] cursor-pointer"
                   >
                     <option value="Contabilidade">Contabilidade</option>
                     <option value="Psicologia">Psicologia</option>
@@ -243,7 +250,7 @@ export const ContactLocationSection: React.FC = () => {
               <div>
                 <label
                   htmlFor="contact-message"
-                  className="block text-xs font-bold uppercase tracking-wider text-[#3A3128] mb-1.5"
+                  className="block text-xs font-bold text-[#181512] mb-1.5"
                 >
                   Mensagem
                 </label>
@@ -254,15 +261,15 @@ export const ContactLocationSection: React.FC = () => {
                   aria-invalid={Boolean(error && !form.message.trim())}
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
-                  placeholder="Como podemos auxiliar você?"
-                  className="w-full px-4 py-3 rounded-lg bg-[#E4DAC9]/75 border border-[#B5A58C] text-sm text-[#1A1714] placeholder-[#3A3128]/65 focus:border-[#7A5B22] resize-none"
+                  placeholder="Conte brevemente como podemos ajudar você ou sua empresa"
+                  className="w-full px-4 py-3 rounded-xl bg-[#E4DAC9]/80 border border-[#B5A58C] text-sm text-[#181512] placeholder-[#3A3128]/60 focus:border-[#7A5B22] resize-none"
                 />
               </div>
 
               {error && (
                 <p
                   role="alert"
-                  className="text-xs font-semibold text-[#1A1714] bg-[#D8CCB8] border border-[#7A5B22]/60 px-3.5 py-2.5 rounded-lg"
+                  className="text-xs font-semibold text-[#181512] bg-[#D8CCB8] border border-[#7A5B22]/70 px-4 py-3 rounded-xl"
                 >
                   {error}
                 </p>
@@ -271,22 +278,22 @@ export const ContactLocationSection: React.FC = () => {
               {submittedUrl && (
                 <div
                   role="status"
-                  className="flex items-start gap-2.5 text-xs text-[#1A1714] bg-[#E4DAC9] border border-[#7A5B22]/60 px-4 py-3 rounded-lg"
+                  className="flex items-start gap-2.5 text-xs text-[#181512] bg-[#E4DAC9] border border-[#7A5B22]/60 px-4 py-3 rounded-xl"
                 >
                   <MessageCircle className="w-4 h-4 text-[#7A5B22] flex-shrink-0 mt-0.5" />
                   <div className="space-y-1">
                     <p className="font-bold">
-                      Redirecionando para o WhatsApp da área de {form.area}.
+                      Abrindo o WhatsApp da área de {form.area}.
                     </p>
                     <p className="text-[#3A3128]">
-                      Se a janela não abrir automaticamente,{' '}
+                      Caso não abra automaticamente,{' '}
                       <a
                         href={submittedUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="font-bold text-[#1A1714] underline underline-offset-2 hover:text-[#7A5B22]"
+                        className="font-bold text-[#181512] underline underline-offset-4 hover:text-[#7A5B22]"
                       >
-                        clique aqui para enviar pelo WhatsApp
+                        clique aqui para enviar agora
                       </a>
                       .
                     </p>
@@ -294,14 +301,136 @@ export const ContactLocationSection: React.FC = () => {
                 </div>
               )}
 
-              <button
-                type="submit"
-                className="btn-primary w-full"
-              >
+              <button type="submit" className="btn-primary w-full">
                 <MessageCircle className="w-4 h-4 text-[#C6A15B]" />
-                <span>Enviar mensagem pelo WhatsApp</span>
+                <span>Enviar pelo WhatsApp ({form.area})</span>
               </button>
             </form>
+          </div>
+
+          {/* Right: Location Details + Enhanced Maps */}
+          <div className="lg:col-span-6 space-y-6">
+            <div className="bg-[#EDE5D8] border border-[#C4B69F] rounded-2xl p-7 space-y-6 shadow-soft">
+              {/* Address + Copy + Route */}
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-xl border border-[#7A5B22]/45 bg-[#E4DAC9] flex items-center justify-center text-[#7A5B22] flex-shrink-0">
+                  <MapPin className="w-5 h-5 stroke-[1.75]" />
+                </div>
+                <div className="space-y-3 flex-grow">
+                  <div>
+                    <h3 className="font-display text-xl font-semibold text-[#181512]">
+                      Endereço em Nova Iguaçu
+                    </h3>
+                    <p className="text-sm text-[#3A3128] leading-relaxed mt-1">
+                      {siteConfig.contact.address.fullFormatted}
+                    </p>
+                  </div>
+
+                  <div className="flex flex-wrap items-center gap-2.5">
+                    <a
+                      href={siteConfig.contact.address.googleMapsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#1C1814] text-[#F5EFE6] text-xs font-semibold hover:bg-[#3A3128] transition-colors cursor-pointer"
+                    >
+                      <Navigation className="w-3.5 h-3.5 text-[#C6A15B]" />
+                      <span>Traçar rota no Maps</span>
+                      <ExternalLink className="w-3 h-3 text-[#D4AF6A]" />
+                    </a>
+
+                    <button
+                      type="button"
+                      onClick={handleCopyAddress}
+                      className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl border border-[#7A5B22]/60 bg-[#E4DAC9] text-[#181512] text-xs font-semibold hover:bg-[#D8CCB8] transition-colors cursor-pointer"
+                    >
+                      {copiedAddress ? (
+                        <>
+                          <Check className="w-3.5 h-3.5 text-[#7A5B22]" />
+                          <span>Endereço copiado</span>
+                        </>
+                      ) : (
+                        <>
+                          <Copy className="w-3.5 h-3.5 text-[#7A5B22]" />
+                          <span>Copiar endereço</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* WhatsApp / Phones */}
+              <div className="flex items-start gap-4 pt-5 border-t border-[#C4B69F]">
+                <div className="w-10 h-10 rounded-xl border border-[#7A5B22]/45 bg-[#E4DAC9] flex items-center justify-center text-[#7A5B22] flex-shrink-0">
+                  <Phone className="w-5 h-5 stroke-[1.75]" />
+                </div>
+                <div className="space-y-1.5">
+                  <h3 className="font-display text-xl font-semibold text-[#181512]">
+                    WhatsApp &amp; Telefones
+                  </h3>
+                  <p className="text-sm text-[#3A3128]">
+                    Principal:{' '}
+                    <a
+                      href={mainWhatsappUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-bold text-[#181512] hover:text-[#7A5B22] underline underline-offset-4 transition-colors cursor-pointer tabular-nums"
+                    >
+                      {siteConfig.contact.mainWhatsappDisplay}
+                    </a>
+                  </p>
+                  <p className="text-xs text-[#3A3128] font-medium tabular-nums">
+                    Contabilidade: (21) 97974-1307 · (21) 97497-7021 | Psicologia: (21) 97427-1660
+                  </p>
+                </div>
+              </div>
+
+              {/* Hours & Email */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-5 border-t border-[#C4B69F]">
+                <div className="flex items-start gap-3">
+                  <Clock className="w-4 h-4 text-[#7A5B22] mt-0.5 flex-shrink-0" />
+                  <div>
+                    <p className="text-xs font-bold text-[#181512]">Atendimento</p>
+                    <p className="text-xs text-[#3A3128] mt-0.5">
+                      {siteConfig.contact.businessHours || 'Sob agendamento via WhatsApp'}
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Mail className="w-4 h-4 text-[#7A5B22] mt-0.5 flex-shrink-0" />
+                  <div>
+                    <p className="text-xs font-bold text-[#181512]">E-mail</p>
+                    <p className="text-xs text-[#3A3128] mt-0.5">
+                      {siteConfig.contact.email || 'A confirmar antes da publicação'}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Interactive Google Maps Embed */}
+            <div className="rounded-2xl overflow-hidden border border-[#C4B69F] bg-[#EDE5D8] shadow-soft">
+              <div className="px-5 py-3 bg-[#1C1814] text-[#F5EFE6] flex items-center justify-between text-xs">
+                <span className="font-semibold">Centro, Nova Iguaçu — RJ</span>
+                <a
+                  href={siteConfig.contact.address.googleMapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#D4AF6A] hover:underline underline-offset-4 cursor-pointer"
+                >
+                  Abrir mapa completo
+                </a>
+              </div>
+              <div className="h-64 sm:h-72">
+                <iframe
+                  title="Mapa de localização LN INTEGRA — Rua Otávio Tarquínio, 74, Centro, Nova Iguaçu"
+                  src={siteConfig.contact.address.googleMapsEmbedUrl}
+                  className="w-full h-full border-0"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
-import { useReveal } from '../hooks/useReveal';
+import { ArrowUpRight, ChevronDown, MessageCircle } from 'lucide-react';
+import { siteConfig, buildWhatsAppUrl } from '../config/siteConfig';
 
 interface FaqItem {
   question: string;
@@ -36,72 +36,80 @@ const faqItems: FaqItem[] = [
 ];
 
 export const FaqSection: React.FC = () => {
-  const { ref, isVisible } = useReveal<HTMLElement>();
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+
+  const whatsappUrl = buildWhatsAppUrl(
+    siteConfig.contact.mainWhatsappNumber,
+    'Olá! Tenho uma dúvida sobre o atendimento da LN INTEGRA.'
+  );
 
   return (
     <section
       id="faq"
-      ref={ref}
-      className={`py-20 sm:py-28 bg-[#E4DAC9] border-t border-[#C4B69F] reveal-section ${
-        isVisible ? 'is-visible' : ''
-      }`}
+      className="py-20 sm:py-28 bg-[#D8CCB8] border-t border-[#C4B69F]"
     >
-      <div className="max-w-4xl mx-auto px-5 sm:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-12 space-y-4">
-          <div className="inline-flex items-center gap-3">
-            <span className="h-px w-8 bg-[#7A5B22]" />
-            <span className="section-eyebrow-text">Dúvidas Frequentes</span>
-            <span className="h-px w-8 bg-[#7A5B22]" />
+      <div className="max-w-7xl mx-auto px-5 sm:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          {/* Left Sticky Summary */}
+          <div className="lg:col-span-5 space-y-5 lg:sticky lg:top-28">
+            <h2 className="section-heading">Dúvidas frequentes</h2>
+            <p className="text-base text-[#3A3128] leading-relaxed">
+              Respostas rápidas sobre localização, agendamento e atuação da LN INTEGRA em Nova
+              Iguaçu.
+            </p>
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary inline-flex"
+            >
+              <MessageCircle className="w-4 h-4 text-[#C6A15B]" />
+              <span>Tirar dúvida no WhatsApp</span>
+              <ArrowUpRight className="w-4 h-4 text-[#C6A15B]" />
+            </a>
           </div>
-          <h2 className="section-heading">Perguntas comuns sobre nosso atendimento</h2>
-          <p className="text-sm sm:text-base text-[#3A3128] leading-relaxed font-medium">
-            Informações essenciais sobre localização, agendamento e atuação da LN INTEGRA.
-          </p>
-        </div>
 
-        <div className="space-y-3">
-          {faqItems.map((item, idx) => {
-            const isOpen = openIndex === idx;
-            const panelId = `faq-panel-${idx}`;
-            const buttonId = `faq-button-${idx}`;
+          {/* Right Clean Accordion List */}
+          <div className="lg:col-span-7 divide-y divide-[#C4B69F] border-y border-[#C4B69F]">
+            {faqItems.map((item, idx) => {
+              const isOpen = openIndex === idx;
+              const panelId = `faq-panel-${idx}`;
+              const buttonId = `faq-button-${idx}`;
 
-            return (
-              <div
-                key={item.question}
-                className="bg-[#EDE5D8] border border-[#C4B69F] rounded-xl overflow-hidden transition-colors hover:border-[#7A5B22]"
-              >
-                <h3>
-                  <button
-                    id={buttonId}
-                    type="button"
-                    aria-expanded={isOpen}
-                    aria-controls={panelId}
-                    onClick={() => setOpenIndex(isOpen ? null : idx)}
-                    className="w-full px-6 py-5 text-left flex items-center justify-between gap-4 cursor-pointer"
+              return (
+                <div key={item.question} className="py-1">
+                  <h3>
+                    <button
+                      id={buttonId}
+                      type="button"
+                      aria-expanded={isOpen}
+                      aria-controls={panelId}
+                      onClick={() => setOpenIndex(isOpen ? null : idx)}
+                      className="w-full py-5 px-2 text-left flex items-center justify-between gap-4 cursor-pointer hover:text-[#7A5B22] transition-colors"
+                    >
+                      <span className="font-display text-lg sm:text-xl text-[#181512] font-semibold leading-snug">
+                        {item.question}
+                      </span>
+                      <ChevronDown
+                        className={`w-5 h-5 text-[#7A5B22] flex-shrink-0 transition-transform duration-200 ${
+                          isOpen ? 'rotate-180' : ''
+                        }`}
+                      />
+                    </button>
+                  </h3>
+                  <div
+                    id={panelId}
+                    role="region"
+                    aria-labelledby={buttonId}
+                    hidden={!isOpen}
+                    className="px-2 pb-5 text-sm sm:text-base text-[#3A3128] leading-relaxed"
                   >
-                    <span className="font-serif text-xl sm:text-[1.35rem] text-[#1A1714] font-semibold leading-snug">
-                      {item.question}
-                    </span>
-                    <ChevronDown
-                      className={`w-5 h-5 text-[#7A5B22] flex-shrink-0 transition-transform duration-200 ${
-                        isOpen ? 'rotate-180' : ''
-                      }`}
-                    />
-                  </button>
-                </h3>
-                <div
-                  id={panelId}
-                  role="region"
-                  aria-labelledby={buttonId}
-                  hidden={!isOpen}
-                  className="px-6 pb-5 pt-0 text-sm text-[#3A3128] leading-relaxed border-t border-[#C4B69F]/70"
-                >
-                  <p className="pt-4">{item.answer}</p>
+                    <p>{item.answer}</p>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>

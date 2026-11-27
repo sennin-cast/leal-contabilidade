@@ -21,13 +21,12 @@ export const Footer: React.FC = () => {
 
   return (
     <>
-      <footer className="bg-[#1E1915] border-t border-[#C6A15B]/25 pt-14 pb-10 text-[#D8CCB8]">
+      <footer className="bg-[#181512] border-t border-[#C6A15B]/25 pt-14 pb-10 text-[#D8CCB8]">
         <div className="max-w-7xl mx-auto px-5 sm:px-8">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-[#C6A15B]/20">
-            {/* Brand */}
             <div className="md:col-span-5 space-y-4">
               <div className="flex items-center gap-3.5">
-                <div className="w-11 h-11 rounded-full overflow-hidden border border-[#C6A15B]/65 bg-[#EDE5D8]">
+                <div className="w-10 h-10 rounded-full overflow-hidden border border-[#C6A15B]/65 bg-[#EDE5D8]">
                   <img
                     src={siteConfig.brand.logoPath}
                     alt="Logo LN INTEGRA"
@@ -35,23 +34,17 @@ export const Footer: React.FC = () => {
                   />
                 </div>
                 <div>
-                  <div className="font-serif text-xl font-semibold tracking-[0.14em] text-[#F5EFE6]">
-                    LN INTEGRA
-                  </div>
-                  <div className="text-[10px] uppercase tracking-[0.2em] text-[#D4AF6A]">
-                    Contabilidade e Psicologia
-                  </div>
+                  <div className="font-display text-xl font-bold text-[#F5EFE6]">LN INTEGRA</div>
+                  <div className="text-xs text-[#D4AF6A]">Contabilidade &amp; Psicologia</div>
                 </div>
               </div>
               <p className="text-sm leading-relaxed max-w-sm text-[#D8CCB8]">
-                LN INTEGRA — Contabilidade e Psicologia. Confiança, profissionalismo e acolhimento
-                no Centro de Nova Iguaçu.
+                Confiança, organização e atendimento acolhedor no Centro de Nova Iguaçu - RJ.
               </p>
             </div>
 
-            {/* Navigation */}
             <div className="md:col-span-3 space-y-3">
-              <h3 className="font-serif text-lg text-[#F5EFE6]">Navegação</h3>
+              <h3 className="font-display text-base font-semibold text-[#F5EFE6]">Navegação</h3>
               <ul className="space-y-2 text-sm">
                 <li>
                   <a href="#inicio" className="hover:text-[#D4AF6A] transition-colors cursor-pointer">
@@ -60,7 +53,7 @@ export const Footer: React.FC = () => {
                 </li>
                 <li>
                   <a href="#sobre" className="hover:text-[#D4AF6A] transition-colors cursor-pointer">
-                    Sobre nós
+                    Sobre
                   </a>
                 </li>
                 <li>
@@ -70,7 +63,7 @@ export const Footer: React.FC = () => {
                 </li>
                 <li>
                   <a href="#jornada" className="hover:text-[#D4AF6A] transition-colors cursor-pointer">
-                    Jornada de atendimento
+                    Como funciona
                   </a>
                 </li>
                 <li>
@@ -91,19 +84,18 @@ export const Footer: React.FC = () => {
               </ul>
             </div>
 
-            {/* Contacts */}
             <div className="md:col-span-4 space-y-3">
-              <h3 className="font-serif text-lg text-[#F5EFE6]">Contato</h3>
+              <h3 className="font-display text-base font-semibold text-[#F5EFE6]">Contato</h3>
               <p className="text-sm leading-relaxed">
                 {siteConfig.contact.address.fullFormatted}
               </p>
-              <p className="text-sm">
+              <p className="text-sm tabular-nums">
                 WhatsApp:{' '}
                 <a
                   href={mainWhatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-semibold text-[#F5EFE6] hover:text-[#D4AF6A] transition-colors cursor-pointer"
+                  className="font-semibold text-[#F5EFE6] hover:text-[#D4AF6A] underline underline-offset-4 transition-colors cursor-pointer"
                 >
                   {siteConfig.contact.mainWhatsappDisplay}
                 </a>
@@ -125,13 +117,12 @@ export const Footer: React.FC = () => {
         </div>
       </footer>
 
-      {/* Privacy Policy Modal */}
       {privacyOpen && (
         <div
           role="dialog"
           aria-modal="true"
           aria-label="Política de Privacidade"
-          className="fixed inset-0 z-50 bg-[#1A1714]/75 backdrop-blur-sm flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 bg-[#181512]/75 backdrop-blur-sm flex items-center justify-center p-4"
           onClick={() => setPrivacyOpen(false)}
         >
           <div
@@ -139,14 +130,14 @@ export const Footer: React.FC = () => {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between border-b border-[#C4B69F] pb-3">
-              <h3 className="font-serif text-2xl font-semibold text-[#1A1714]">
+              <h3 className="font-display text-2xl font-semibold text-[#181512]">
                 Política de Privacidade
               </h3>
               <button
                 type="button"
                 onClick={() => setPrivacyOpen(false)}
                 aria-label="Fechar Política de Privacidade"
-                className="p-1.5 rounded-lg text-[#3A3128] hover:text-[#1A1714] cursor-pointer"
+                className="p-1.5 rounded-xl text-[#3A3128] hover:text-[#181512] cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>

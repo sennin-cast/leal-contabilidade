@@ -4,12 +4,12 @@ import { siteConfig } from '../config/siteConfig';
 
 const navLinks = [
   { label: 'Início', href: '#inicio' },
-  { label: 'Sobre nós', href: '#sobre' },
+  { label: 'Sobre', href: '#sobre' },
   { label: 'Atuação', href: '#atuacao' },
-  { label: 'Jornada', href: '#jornada' },
-  { label: 'Nosso espaço', href: '#espaco' },
+  { label: 'Como funciona', href: '#jornada' },
+  { label: 'Espaço', href: '#espaco' },
+  { label: 'Equipe', href: '#profissionais' },
   { label: 'Dúvidas', href: '#faq' },
-  { label: 'Contato', href: '#contato' },
 ];
 
 export const Header: React.FC = () => {
@@ -45,7 +45,7 @@ export const Header: React.FC = () => {
     <>
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:px-4 focus:py-2.5 focus:rounded-lg focus:bg-[#221D18] focus:text-[#F5EFE6] focus:text-sm focus:font-semibold"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:px-4 focus:py-2.5 focus:rounded-xl focus:bg-[#1C1814] focus:text-[#F5EFE6] focus:text-sm focus:font-semibold"
       >
         Pular para o conteúdo principal
       </a>
@@ -53,18 +53,17 @@ export const Header: React.FC = () => {
       <header
         className={`fixed top-0 inset-x-0 z-40 transition-all duration-300 ${
           scrolled
-            ? 'bg-[#E4DAC9]/95 backdrop-blur-md border-b border-[#C4B69F] shadow-soft text-[#1A1714]'
-            : 'bg-[#1E1915]/60 backdrop-blur-sm border-b border-[#C6A15B]/15 text-[#F5EFE6]'
+            ? 'bg-[#E4DAC9]/95 backdrop-blur-md border-b border-[#C4B69F] shadow-soft text-[#181512]'
+            : 'bg-[#1C1814]/65 backdrop-blur-sm border-b border-[#C6A15B]/15 text-[#F5EFE6]'
         }`}
       >
         <div className="max-w-7xl mx-auto px-5 sm:px-8 h-20 flex items-center justify-between gap-4">
-          {/* Brand Logo */}
           <a
             href="#inicio"
-            className="flex items-center gap-3.5 group cursor-pointer rounded-lg"
+            className="flex items-center gap-3 group cursor-pointer rounded-xl"
             aria-label="LN INTEGRA — Ir para o início"
           >
-            <div className="w-11 h-11 rounded-full overflow-hidden border border-[#C6A15B]/75 bg-[#EDE5D8] flex-shrink-0 transition-transform duration-300 group-hover:scale-105">
+            <div className="w-10 h-10 rounded-full overflow-hidden border border-[#C6A15B]/75 bg-[#EDE5D8] flex-shrink-0 transition-transform duration-300 group-hover:scale-105">
               <img
                 src={siteConfig.brand.logoPath}
                 alt="Logo LN INTEGRA"
@@ -73,31 +72,30 @@ export const Header: React.FC = () => {
             </div>
             <div className="flex flex-col">
               <span
-                className={`font-serif text-xl sm:text-2xl font-semibold tracking-[0.14em] leading-none transition-colors ${
-                  scrolled ? 'text-[#1A1714]' : 'text-[#F5EFE6]'
+                className={`font-display text-lg sm:text-xl font-bold tracking-tight leading-none transition-colors ${
+                  scrolled ? 'text-[#181512]' : 'text-[#F5EFE6]'
                 }`}
               >
-                INTEGRA
+                LN INTEGRA
               </span>
               <span
-                className={`text-[10px] tracking-[0.2em] uppercase mt-1 font-medium transition-colors ${
+                className={`text-[11px] font-medium mt-0.5 transition-colors ${
                   scrolled ? 'text-[#3A3128]' : 'text-[#D8CCB8]'
                 }`}
               >
-                Contabilidade e Psicologia
+                Contabilidade &amp; Psicologia
               </span>
             </div>
           </a>
 
-          {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-6" aria-label="Navegação principal">
             {navLinks.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className={`text-sm font-medium transition-colors relative py-1.5 cursor-pointer after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-[#C6A15B] hover:after:w-full after:transition-all after:duration-200 ${
+                className={`text-sm font-medium transition-colors py-1.5 cursor-pointer underline-offset-4 hover:underline ${
                   scrolled
-                    ? 'text-[#1A1714] hover:text-[#7A5B22]'
+                    ? 'text-[#181512] hover:text-[#7A5B22]'
                     : 'text-[#F5EFE6]/95 hover:text-[#D4AF6A]'
                 }`}
               >
@@ -106,38 +104,35 @@ export const Header: React.FC = () => {
             ))}
           </nav>
 
-          {/* Desktop CTA */}
           <div className="hidden lg:flex items-center">
             <a
               href="#contato"
-              className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border text-sm font-semibold transition-colors duration-200 cursor-pointer ${
+              className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-colors duration-200 cursor-pointer ${
                 scrolled
-                  ? 'border-[#221D18] text-[#F5EFE6] bg-[#221D18] hover:bg-[#3A3128]'
-                  : 'border-[#C6A15B] text-[#F5EFE6] bg-[#221D18]/80 hover:bg-[#C6A15B] hover:text-[#1A1714]'
+                  ? 'bg-[#1C1814] text-[#F5EFE6] hover:bg-[#3A3128]'
+                  : 'bg-[#C6A15B] text-[#181512] hover:bg-[#D4AF6A]'
               }`}
             >
-              <span>Fale conosco</span>
+              <span>Agendar conversa</span>
               <ArrowUpRight className="w-4 h-4" />
             </a>
           </div>
 
-          {/* Mobile Menu Button */}
           <button
             type="button"
             onClick={() => setMobileOpen(true)}
             aria-label="Abrir menu de navegação"
             aria-expanded={mobileOpen}
-            className={`lg:hidden p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg border transition-colors cursor-pointer ${
+            className={`lg:hidden p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl border transition-colors cursor-pointer ${
               scrolled
-                ? 'border-[#C4B69F] bg-[#EDE5D8] text-[#1A1714] hover:border-[#7A5B22]'
-                : 'border-[#C6A15B]/50 bg-[#221D18]/80 text-[#F5EFE6] hover:border-[#C6A15B]'
+                ? 'border-[#C4B69F] bg-[#EDE5D8] text-[#181512]'
+                : 'border-[#C6A15B]/50 bg-[#1C1814]/80 text-[#F5EFE6]'
             }`}
           >
             <Menu className="w-5 h-5" />
           </button>
         </div>
 
-        {/* Hairline scroll progress */}
         <div
           aria-hidden="true"
           className="h-[2px] bg-[#C6A15B] transition-[width] duration-150 ease-out"
@@ -148,11 +143,12 @@ export const Header: React.FC = () => {
       {/* Mobile Drawer */}
       <div
         aria-hidden={!mobileOpen}
-        className={`fixed inset-0 z-50 lg:hidden transition-opacity duration-300 ${mobileOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-          }`}
+        className={`fixed inset-0 z-50 lg:hidden transition-opacity duration-300 ${
+          mobileOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
       >
         <div
-          className="absolute inset-0 bg-[#1A1714]/60 backdrop-blur-sm"
+          className="absolute inset-0 bg-[#181512]/65 backdrop-blur-sm"
           onClick={() => setMobileOpen(false)}
         />
         <aside
@@ -165,28 +161,12 @@ export const Header: React.FC = () => {
         >
           <div>
             <div className="flex items-center justify-between pb-5 border-b border-[#C4B69F]">
-              <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full overflow-hidden border border-[#7A5B22]/60">
-                  <img
-                    src={siteConfig.brand.logoPath}
-                    alt="LN INTEGRA"
-                    className="w-full h-full object-cover scale-125"
-                  />
-                </div>
-                <div>
-                  <div className="font-serif text-lg font-semibold tracking-[0.12em] text-[#1A1714]">
-                    INTEGRA
-                  </div>
-                  <div className="text-[9px] uppercase tracking-[0.18em] text-[#3A3128]">
-                    Contabilidade e Psicologia
-                  </div>
-                </div>
-              </div>
+              <span className="font-display text-lg font-bold text-[#181512]">LN INTEGRA</span>
               <button
                 type="button"
                 onClick={() => setMobileOpen(false)}
                 aria-label="Fechar menu"
-                className="p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg text-[#3A3128] hover:text-[#1A1714] hover:bg-[#D8CCB8] transition-colors cursor-pointer"
+                className="p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl text-[#3A3128] hover:text-[#181512] hover:bg-[#D8CCB8] transition-colors cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -198,7 +178,7 @@ export const Header: React.FC = () => {
                   key={item.href}
                   href={item.href}
                   onClick={() => setMobileOpen(false)}
-                  className="py-3 px-2 text-base font-medium text-[#1A1714] hover:text-[#7A5B22] border-b border-[#C4B69F]/60 transition-colors cursor-pointer"
+                  className="py-3 px-2 text-base font-medium text-[#181512] hover:text-[#7A5B22] border-b border-[#C4B69F]/60 transition-colors cursor-pointer"
                 >
                   {item.label}
                 </a>
@@ -210,12 +190,12 @@ export const Header: React.FC = () => {
             <a
               href="#contato"
               onClick={() => setMobileOpen(false)}
-              className="w-full py-3.5 px-4 rounded-lg bg-[#221D18] text-[#F5EFE6] text-sm font-semibold flex items-center justify-center gap-2 hover:bg-[#3A3128] transition-colors cursor-pointer"
+              className="btn-primary w-full"
             >
-              <span>Fale conosco</span>
+              <span>Agendar conversa</span>
               <ArrowUpRight className="w-4 h-4 text-[#C6A15B]" />
             </a>
-            <p className="text-[11px] text-[#3A3128] text-center">
+            <p className="text-xs text-[#3A3128] text-center">
               {siteConfig.contact.address.street}, {siteConfig.contact.address.complement} —{' '}
               {siteConfig.contact.address.city}/{siteConfig.contact.address.state}
             </p>

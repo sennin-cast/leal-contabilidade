@@ -33,16 +33,16 @@ export const WhatsAppFloatingButton: React.FC = () => {
         >
           <div className="flex items-center justify-between border-b border-[#C4B69F] pb-2.5">
             <div>
-              <p className="font-serif text-lg font-semibold text-[#1A1714] leading-none">
+              <p className="font-display text-base font-bold text-[#181512] leading-none">
                 Atendimento WhatsApp
               </p>
-              <p className="text-[11px] text-[#3A3128] mt-1">Escolha a área desejada</p>
+              <p className="text-xs text-[#3A3128] mt-1">Escolha a área desejada</p>
             </div>
             <button
               type="button"
               onClick={() => setOpen(false)}
               aria-label="Fechar opções de WhatsApp"
-              className="p-1 rounded-md text-[#3A3128] hover:text-[#1A1714] cursor-pointer"
+              className="p-1 rounded-lg text-[#3A3128] hover:text-[#181512] cursor-pointer"
             >
               <X className="w-4 h-4" />
             </button>
@@ -56,8 +56,8 @@ export const WhatsAppFloatingButton: React.FC = () => {
               className="flex items-center justify-between p-3 rounded-xl border border-[#C4B69F] hover:border-[#7A5B22] bg-[#E4DAC9] transition-colors cursor-pointer"
             >
               <div>
-                <p className="text-xs font-bold text-[#1A1714]">Contabilidade</p>
-                <p className="text-[11px] text-[#3A3128]">(21) 97974-1307</p>
+                <p className="text-xs font-bold text-[#181512]">Contabilidade</p>
+                <p className="text-xs text-[#3A3128] tabular-nums">(21) 97974-1307</p>
               </div>
               <ArrowUpRight className="w-4 h-4 text-[#7A5B22]" />
             </a>
@@ -69,8 +69,8 @@ export const WhatsAppFloatingButton: React.FC = () => {
               className="flex items-center justify-between p-3 rounded-xl border border-[#C4B69F] hover:border-[#7A5B22] bg-[#E4DAC9] transition-colors cursor-pointer"
             >
               <div>
-                <p className="text-xs font-bold text-[#1A1714]">Psicologia</p>
-                <p className="text-[11px] text-[#3A3128]">(21) 97427-1660</p>
+                <p className="text-xs font-bold text-[#181512]">Psicologia</p>
+                <p className="text-xs text-[#3A3128] tabular-nums">(21) 97427-1660</p>
               </div>
               <ArrowUpRight className="w-4 h-4 text-[#7A5B22]" />
             </a>
@@ -83,7 +83,7 @@ export const WhatsAppFloatingButton: React.FC = () => {
         onClick={() => setOpen((prev) => !prev)}
         aria-label={open ? 'Fechar WhatsApp' : 'Abrir atendimento via WhatsApp'}
         aria-expanded={open}
-        className="group inline-flex items-center gap-2.5 px-4 py-3 rounded-full bg-[#221D18] text-[#F5EFE6] border border-[#C6A15B]/75 shadow-editorial hover:bg-[#3A3128] transition-colors duration-200 cursor-pointer"
+        className="group inline-flex items-center gap-2.5 px-4 py-3 rounded-full bg-[#1C1814] text-[#F5EFE6] border border-[#C6A15B]/75 shadow-editorial hover:bg-[#3A3128] transition-colors duration-200 cursor-pointer"
       >
         <MessageCircle className="w-4 h-4 text-[#D4AF6A]" />
         <span className="text-xs font-semibold tracking-wide hidden sm:inline">WhatsApp</span>

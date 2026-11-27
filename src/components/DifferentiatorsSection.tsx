@@ -42,13 +42,11 @@ export const DifferentiatorsSection: React.FC = () => {
     >
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
         <div className="max-w-2xl mb-14 space-y-4">
-          <div className="flex items-center gap-3">
-            <span className="h-px w-8 bg-[#C2A36A]" />
-            <span className="text-xs uppercase tracking-[0.22em] text-[#A48650] font-semibold">
-              Nossos Pilares
-            </span>
+          <div className="section-eyebrow">
+            <span className="section-eyebrow-line" />
+            <span className="section-eyebrow-text">Nossos Pilares</span>
           </div>
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-[2.75rem] font-medium text-[#34322F] leading-[1.15]">
+          <h2 className="section-heading">
             Mais do que serviços, relações construídas com confiança.
           </h2>
         </div>
@@ -59,17 +57,15 @@ export const DifferentiatorsSection: React.FC = () => {
             return (
               <div
                 key={item.title}
-                className="pt-6 border-t border-[#C2A36A]/50 space-y-4"
+                className="pt-6 border-t border-[#C2A36A]/55 space-y-4 transition-colors duration-200 hover:border-[#94743E]"
               >
-                <div className="w-10 h-10 rounded-lg border border-[#E9E3D9] bg-[#E9E3D9]/35 flex items-center justify-center text-[#A48650]">
+                <div className="w-10 h-10 rounded-lg border border-[#E9E3D9] bg-[#E9E3D9]/40 flex items-center justify-center text-[#94743E]">
                   <Icon className="w-5 h-5 stroke-[1.5]" />
                 </div>
                 <h3 className="font-serif text-2xl text-[#34322F] font-medium">
                   {item.title}
                 </h3>
-                <p className="text-sm text-[#766044] leading-relaxed">
-                  {item.description}
-                </p>
+                <p className="text-sm text-[#5C4A33] leading-relaxed">{item.description}</p>
               </div>
             );
           })}

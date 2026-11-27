@@ -29,30 +29,35 @@ export const ContactCtaSection: React.FC = () => {
     >
       <div className="max-w-4xl mx-auto px-5 sm:px-8 text-center space-y-7">
         <div className="inline-flex items-center gap-3">
-          <span className="h-px w-8 bg-[#A48650]" />
-          <span className="text-xs uppercase tracking-[0.22em] text-[#766044] font-semibold">
-            Atendimento
+          <span className="h-px w-8 bg-[#94743E]" />
+          <span className="text-xs uppercase tracking-[0.22em] text-[#5C4A33] font-semibold">
+            Atendimento Direto
           </span>
-          <span className="h-px w-8 bg-[#A48650]" />
+          <span className="h-px w-8 bg-[#94743E]" />
         </div>
 
         <h2 className="font-serif text-4xl sm:text-5xl text-[#34322F] font-medium">
           Vamos conversar?
         </h2>
 
-        <p className="text-base sm:text-lg text-[#766044] max-w-xl mx-auto leading-relaxed">
+        <p className="text-base sm:text-lg text-[#5C4A33] max-w-xl mx-auto leading-relaxed">
           Estamos prontos para receber você e entender como podemos ajudar.
         </p>
 
         {/* Area Selector for WhatsApp Routing */}
-        <div className="inline-flex p-1 rounded-lg bg-[#F8F6F0] border border-[#B7AEA1]/50">
+        <div
+          role="group"
+          aria-label="Selecionar área de atendimento"
+          className="inline-flex p-1 rounded-lg bg-[#F8F6F0] border border-[#B7AEA1]/50"
+        >
           <button
             type="button"
             onClick={() => setSelectedArea('contabilidade')}
-            className={`px-4 py-2 rounded-md text-xs sm:text-sm font-medium transition-colors ${
+            aria-pressed={selectedArea === 'contabilidade'}
+            className={`px-4 py-2 rounded-md text-xs sm:text-sm font-medium transition-colors cursor-pointer ${
               selectedArea === 'contabilidade'
                 ? 'bg-[#34322F] text-[#F8F6F0]'
-                : 'text-[#766044] hover:text-[#34322F]'
+                : 'text-[#5C4A33] hover:text-[#34322F]'
             }`}
           >
             Contabilidade
@@ -60,10 +65,11 @@ export const ContactCtaSection: React.FC = () => {
           <button
             type="button"
             onClick={() => setSelectedArea('psicologia')}
-            className={`px-4 py-2 rounded-md text-xs sm:text-sm font-medium transition-colors ${
+            aria-pressed={selectedArea === 'psicologia'}
+            className={`px-4 py-2 rounded-md text-xs sm:text-sm font-medium transition-colors cursor-pointer ${
               selectedArea === 'psicologia'
                 ? 'bg-[#34322F] text-[#F8F6F0]'
-                : 'text-[#766044] hover:text-[#34322F]'
+                : 'text-[#5C4A33] hover:text-[#34322F]'
             }`}
           >
             Psicologia
@@ -75,7 +81,7 @@ export const ContactCtaSection: React.FC = () => {
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-lg bg-[#34322F] text-[#F8F6F0] text-sm font-medium hover:bg-[#766044] transition-colors"
+            className="btn-primary w-full sm:w-auto"
           >
             <MessageCircle className="w-4 h-4 text-[#C2A36A]" />
             <span>
@@ -86,10 +92,10 @@ export const ContactCtaSection: React.FC = () => {
 
           <a
             href="#espaco"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-lg border border-[#A48650] text-[#34322F] hover:bg-[#F8F6F0]/60 text-sm font-medium transition-colors"
+            className="btn-secondary w-full sm:w-auto"
           >
             <span>Conhecer nosso espaço</span>
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="w-4 h-4 text-[#94743E]" />
           </a>
         </div>
       </div>

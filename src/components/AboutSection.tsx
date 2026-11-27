@@ -28,18 +28,16 @@ export const AboutSection: React.FC = () => {
 
           {/* Right: Institutional Copy */}
           <div className="lg:col-span-6 order-1 lg:order-2 space-y-6">
-            <div className="flex items-center gap-3">
-              <span className="h-px w-8 bg-[#C2A36A]" />
-              <span className="text-xs uppercase tracking-[0.22em] text-[#A48650] font-semibold">
-                Sobre a LN INTEGRA
-              </span>
+            <div className="section-eyebrow">
+              <span className="section-eyebrow-line" />
+              <span className="section-eyebrow-text">Sobre a LN INTEGRA</span>
             </div>
 
-            <h2 className="font-serif text-3xl sm:text-4xl lg:text-[2.75rem] font-medium text-[#34322F] leading-[1.15]">
+            <h2 className="section-heading">
               Um conceito de atendimento que integra pessoas e negócios.
             </h2>
 
-            <div className="space-y-4 text-base text-[#766044] leading-relaxed">
+            <div className="space-y-4 text-base text-[#5C4A33] leading-relaxed">
               <p>
                 A INTEGRA nasceu com o propósito de reunir conhecimento técnico, profissionalismo
                 e atendimento humanizado em um ambiente acolhedor e cuidadosamente preparado para
@@ -52,17 +50,19 @@ export const AboutSection: React.FC = () => {
               </p>
             </div>
 
-            <div className="pt-4 grid grid-cols-2 gap-6 border-t border-[#E9E3D9]">
-              <div>
+            <div className="pt-5 grid grid-cols-1 sm:grid-cols-2 gap-6 border-t border-[#E9E3D9]">
+              <div className="space-y-1.5">
                 <p className="font-serif text-2xl text-[#34322F]">Contabilidade</p>
-                <p className="text-xs text-[#766044] mt-1">
-                  Organização e segurança para decisões tranquilas.
+                <p className="text-sm text-[#5C4A33] leading-relaxed">
+                  Organização, clareza e segurança para decisões tranquilas na gestão das suas
+                  atividades.
                 </p>
               </div>
-              <div>
+              <div className="space-y-1.5">
                 <p className="font-serif text-2xl text-[#34322F]">Psicologia</p>
-                <p className="text-xs text-[#766044] mt-1">
-                  Escuta qualificada, acolhimento e cuidado humano.
+                <p className="text-sm text-[#5C4A33] leading-relaxed">
+                  Escuta qualificada, acolhimento individualizado e cuidado humano com ética
+                  profissional.
                 </p>
               </div>
             </div>

@@ -6,9 +6,10 @@
   --bg-paper: #F8F6F0;
   --bg-linen: #E9E3D9;
   --ink-primary: #34322F;
+  --ink-secondary: #5C4A33;
   --ink-muted: #766044;
   --gold: #C2A36A;
-  --gold-aged: #A48650;
+  --gold-aged: #94743E;
   --greige: #B7AEA1;
 }
 
@@ -30,6 +31,10 @@
     font-family: 'Cormorant Garamond', Georgia, serif;
   }
 
+  a, button, input, select, textarea {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C2A36A] focus-visible:ring-offset-2 focus-visible:ring-offset-[#F8F6F0];
+  }
+
   ::-webkit-scrollbar {
     width: 8px;
   }
@@ -45,6 +50,32 @@
 
   ::-webkit-scrollbar-thumb:hover {
     background: var(--gold-aged);
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-lg bg-[#34322F] text-[#F8F6F0] text-sm font-medium hover:bg-[#5C4A33] transition-colors duration-200 shadow-soft cursor-pointer;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-lg border border-[#C2A36A] text-[#34322F] bg-[#F8F6F0] hover:bg-[#E9E3D9]/75 text-sm font-medium transition-colors duration-200 cursor-pointer;
+  }
+
+  .section-eyebrow {
+    @apply flex items-center gap-3;
+  }
+
+  .section-eyebrow-line {
+    @apply h-px w-8 bg-[#C2A36A];
+  }
+
+  .section-eyebrow-text {
+    @apply text-xs uppercase tracking-[0.22em] text-[#94743E] font-semibold;
+  }
+
+  .section-heading {
+    @apply font-serif text-3xl sm:text-4xl lg:text-[2.75rem] font-medium text-[#34322F] leading-[1.14];
   }
 }
 

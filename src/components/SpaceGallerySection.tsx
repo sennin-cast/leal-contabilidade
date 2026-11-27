@@ -38,17 +38,13 @@ export const SpaceGallerySection: React.FC = () => {
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div className="max-w-2xl space-y-4">
-            <div className="flex items-center gap-3">
-              <span className="h-px w-8 bg-[#C2A36A]" />
-              <span className="text-xs uppercase tracking-[0.22em] text-[#A48650] font-semibold">
-                Nosso Espaço
-              </span>
+            <div className="section-eyebrow">
+              <span className="section-eyebrow-line" />
+              <span className="section-eyebrow-text">Nosso Espaço</span>
             </div>
-            <h2 className="font-serif text-3xl sm:text-4xl lg:text-[2.75rem] font-medium text-[#34322F] leading-[1.15]">
-              Um ambiente pensado para acolher.
-            </h2>
+            <h2 className="section-heading">Um ambiente pensado para acolher.</h2>
           </div>
-          <p className="text-sm sm:text-base text-[#766044] max-w-md leading-relaxed">
+          <p className="text-sm sm:text-base text-[#5C4A33] max-w-md leading-relaxed">
             Cada detalhe do nosso espaço foi pensado para proporcionar conforto, tranquilidade e
             uma experiência agradável desde o primeiro contato.
           </p>
@@ -71,7 +67,8 @@ export const SpaceGallerySection: React.FC = () => {
                 key={photo.id}
                 type="button"
                 onClick={() => setActiveIndex(index)}
-                className={`group relative rounded-xl overflow-hidden border border-[#E9E3D9] bg-[#E9E3D9] text-left focus:outline-none focus:ring-2 focus:ring-[#C2A36A] ${spanClass}`}
+                aria-label={`Ampliar foto: ${photo.caption}`}
+                className={`group relative rounded-xl overflow-hidden border border-[#E9E3D9] bg-[#E9E3D9] text-left cursor-pointer ${spanClass}`}
               >
                 <img
                   src={photo.src}
@@ -79,7 +76,7 @@ export const SpaceGallerySection: React.FC = () => {
                   loading="lazy"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#34322F]/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#34322F]/75 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-[#F8F6F0] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <span className="text-xs font-medium tracking-wide">{photo.caption}</span>
                   <span className="p-1.5 rounded-full bg-[#F8F6F0]/20 backdrop-blur-sm">
@@ -109,7 +106,7 @@ export const SpaceGallerySection: React.FC = () => {
               type="button"
               onClick={() => setActiveIndex(null)}
               aria-label="Fechar visualização"
-              className="absolute -top-12 right-0 p-2 rounded-full text-[#F8F6F0]/80 hover:text-[#F8F6F0] transition-colors"
+              className="absolute -top-12 right-0 p-2 rounded-full text-[#F8F6F0]/85 hover:text-[#F8F6F0] transition-colors cursor-pointer"
             >
               <X className="w-6 h-6" />
             </button>
@@ -131,18 +128,18 @@ export const SpaceGallerySection: React.FC = () => {
                     setActiveIndex((activeIndex - 1 + photos.length) % photos.length)
                   }
                   aria-label="Foto anterior"
-                  className="p-2 rounded-lg border border-[#B7AEA1]/40 hover:border-[#C2A36A] transition-colors"
+                  className="p-2 rounded-lg border border-[#B7AEA1]/40 hover:border-[#C2A36A] transition-colors cursor-pointer"
                 >
                   <ChevronLeft className="w-4 h-4" />
                 </button>
-                <span className="text-xs text-[#B7AEA1] px-2">
+                <span className="text-xs text-[#E9E3D9] px-2">
                   {activeIndex + 1} / {photos.length}
                 </span>
                 <button
                   type="button"
                   onClick={() => setActiveIndex((activeIndex + 1) % photos.length)}
                   aria-label="Próxima foto"
-                  className="p-2 rounded-lg border border-[#B7AEA1]/40 hover:border-[#C2A36A] transition-colors"
+                  className="p-2 rounded-lg border border-[#B7AEA1]/40 hover:border-[#C2A36A] transition-colors cursor-pointer"
                 >
                   <ChevronRight className="w-4 h-4" />
                 </button>

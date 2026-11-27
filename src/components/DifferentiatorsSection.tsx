@@ -36,7 +36,7 @@ export const DifferentiatorsSection: React.FC = () => {
     <section
       id="diferenciais"
       ref={ref}
-      className={`py-20 sm:py-28 bg-[#F8F6F0] border-t border-[#E9E3D9] reveal-section ${
+      className={`py-20 sm:py-28 bg-[#D8CCB8] border-t border-[#C4B69F] reveal-section ${
         isVisible ? 'is-visible' : ''
       }`}
     >
@@ -57,15 +57,15 @@ export const DifferentiatorsSection: React.FC = () => {
             return (
               <div
                 key={item.title}
-                className="pt-6 border-t border-[#C2A36A]/55 space-y-4 transition-colors duration-200 hover:border-[#94743E]"
+                className="pt-6 border-t-2 border-[#7A5B22]/55 space-y-4 transition-colors duration-200 hover:border-[#1A1714]"
               >
-                <div className="w-10 h-10 rounded-lg border border-[#E9E3D9] bg-[#E9E3D9]/40 flex items-center justify-center text-[#94743E]">
-                  <Icon className="w-5 h-5 stroke-[1.5]" />
+                <div className="w-10 h-10 rounded-lg border border-[#C4B69F] bg-[#EDE5D8] flex items-center justify-center text-[#7A5B22]">
+                  <Icon className="w-5 h-5 stroke-[1.75]" />
                 </div>
-                <h3 className="font-serif text-2xl text-[#34322F] font-medium">
+                <h3 className="font-serif text-2xl text-[#1A1714] font-semibold">
                   {item.title}
                 </h3>
-                <p className="text-sm text-[#5C4A33] leading-relaxed">{item.description}</p>
+                <p className="text-sm text-[#3A3128] leading-relaxed">{item.description}</p>
               </div>
             );
           })}

@@ -3,26 +3,27 @@
 @tailwind utilities;
 
 :root {
-  --bg-paper: #F8F6F0;
-  --bg-linen: #E9E3D9;
-  --ink-primary: #34322F;
-  --ink-secondary: #5C4A33;
-  --ink-muted: #766044;
-  --gold: #C2A36A;
-  --gold-aged: #94743E;
-  --greige: #B7AEA1;
+  --bg-sand: #E4DAC9;
+  --bg-linen: #D8CCB8;
+  --bg-parchment: #EDE5D8;
+  --bg-espresso: #221D18;
+  --ink-primary: #1A1714;
+  --ink-secondary: #3A3128;
+  --gold: #C6A15B;
+  --gold-ink: #7A5B22;
+  --border-warm: #C4B69F;
 }
 
 @layer base {
   html {
     font-family: 'Manrope', system-ui, -apple-system, sans-serif;
     color-scheme: light;
-    background-color: var(--bg-paper);
+    background-color: var(--bg-sand);
     color: var(--ink-primary);
   }
 
   body {
-    background-color: var(--bg-paper);
+    background-color: var(--bg-sand);
     color: var(--ink-primary);
     overflow-x: hidden;
   }
@@ -32,7 +33,7 @@
   }
 
   a, button, input, select, textarea {
-    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C2A36A] focus-visible:ring-offset-2 focus-visible:ring-offset-[#F8F6F0];
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C6A15B] focus-visible:ring-offset-2 focus-visible:ring-offset-[#E4DAC9];
   }
 
   ::-webkit-scrollbar {
@@ -40,26 +41,26 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: var(--bg-paper);
+    background: var(--bg-linen);
   }
 
   ::-webkit-scrollbar-thumb {
-    background: var(--gold);
+    background: var(--gold-ink);
     border-radius: 4px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: var(--gold-aged);
+    background: var(--ink-primary);
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-lg bg-[#34322F] text-[#F8F6F0] text-sm font-medium hover:bg-[#5C4A33] transition-colors duration-200 shadow-soft cursor-pointer;
+    @apply inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-lg bg-[#221D18] text-[#F5EFE6] text-sm font-semibold hover:bg-[#3A3128] transition-colors duration-200 shadow-soft cursor-pointer;
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-lg border border-[#C2A36A] text-[#34322F] bg-[#F8F6F0] hover:bg-[#E9E3D9]/75 text-sm font-medium transition-colors duration-200 cursor-pointer;
+    @apply inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-lg border border-[#7A5B22] text-[#1A1714] bg-[#EDE5D8] hover:bg-[#D8CCB8] text-sm font-semibold transition-colors duration-200 cursor-pointer;
   }
 
   .section-eyebrow {
@@ -67,15 +68,15 @@
   }
 
   .section-eyebrow-line {
-    @apply h-px w-8 bg-[#C2A36A];
+    @apply h-px w-8 bg-[#7A5B22];
   }
 
   .section-eyebrow-text {
-    @apply text-xs uppercase tracking-[0.22em] text-[#94743E] font-semibold;
+    @apply text-xs uppercase tracking-[0.22em] text-[#7A5B22] font-bold;
   }
 
   .section-heading {
-    @apply font-serif text-3xl sm:text-4xl lg:text-[2.75rem] font-medium text-[#34322F] leading-[1.14];
+    @apply font-serif text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold text-[#1A1714] leading-[1.14];
   }
 }
 
@@ -86,7 +87,7 @@
   }
 
   .paper-grain {
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
   }
 
   .reveal-section {

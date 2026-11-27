@@ -8,14 +8,15 @@ export default {
     extend: {
       colors: {
         integra: {
-          'off-white': '#F8F6F0',
-          'beige': '#E9E3D9',
-          'greige': '#B7AEA1',
-          'gold': '#C2A36A',
-          'gold-aged': '#94743E',
-          'brown': '#5C4A33',
-          'brown-soft': '#766044',
-          'graphite': '#34322F',
+          'sand': '#E4DAC9',
+          'linen': '#D8CCB8',
+          'parchment': '#EDE5D8',
+          'espresso': '#221D18',
+          'ink': '#1A1714',
+          'umber': '#3A3128',
+          'gold': '#C6A15B',
+          'gold-ink': '#7A5B22',
+          'border': '#C4B69F',
         },
       },
       fontFamily: {
@@ -23,9 +24,9 @@ export default {
         sans: ['"Manrope"', 'system-ui', '-apple-system', 'sans-serif'],
       },
       boxShadow: {
-        'editorial': '0 18px 45px -20px rgba(52, 50, 47, 0.14)',
-        'soft': '0 8px 24px -10px rgba(52, 50, 47, 0.08)',
-        'card-hover': '0 14px 32px -14px rgba(52, 50, 47, 0.12)',
+        'editorial': '0 20px 48px -20px rgba(26, 23, 20, 0.25)',
+        'soft': '0 8px 24px -10px rgba(26, 23, 20, 0.12)',
+        'card-hover': '0 14px 32px -14px rgba(26, 23, 20, 0.18)',
       },
     },
   },

@@ -23,24 +23,24 @@ export const ContactCtaSection: React.FC = () => {
   return (
     <section
       ref={ref}
-      className={`py-20 sm:py-24 bg-[#E9E3D9] border-t border-[#B7AEA1]/40 reveal-section ${
+      className={`py-20 sm:py-24 bg-[#221D18] text-[#F5EFE6] border-t border-[#C6A15B]/25 reveal-section ${
         isVisible ? 'is-visible' : ''
       }`}
     >
       <div className="max-w-4xl mx-auto px-5 sm:px-8 text-center space-y-7">
         <div className="inline-flex items-center gap-3">
-          <span className="h-px w-8 bg-[#94743E]" />
-          <span className="text-xs uppercase tracking-[0.22em] text-[#5C4A33] font-semibold">
+          <span className="h-px w-8 bg-[#C6A15B]" />
+          <span className="text-xs uppercase tracking-[0.22em] text-[#D4AF6A] font-semibold">
             Atendimento Direto
           </span>
-          <span className="h-px w-8 bg-[#94743E]" />
+          <span className="h-px w-8 bg-[#C6A15B]" />
         </div>
 
-        <h2 className="font-serif text-4xl sm:text-5xl text-[#34322F] font-medium">
+        <h2 className="font-serif text-4xl sm:text-5xl text-[#F5EFE6] font-medium">
           Vamos conversar?
         </h2>
 
-        <p className="text-base sm:text-lg text-[#5C4A33] max-w-xl mx-auto leading-relaxed">
+        <p className="text-base sm:text-lg text-[#E4DAC9] max-w-xl mx-auto leading-relaxed">
           Estamos prontos para receber você e entender como podemos ajudar.
         </p>
 
@@ -48,16 +48,16 @@ export const ContactCtaSection: React.FC = () => {
         <div
           role="group"
           aria-label="Selecionar área de atendimento"
-          className="inline-flex p-1 rounded-lg bg-[#F8F6F0] border border-[#B7AEA1]/50"
+          className="inline-flex p-1 rounded-lg bg-[#2E2720] border border-[#C6A15B]/35"
         >
           <button
             type="button"
             onClick={() => setSelectedArea('contabilidade')}
             aria-pressed={selectedArea === 'contabilidade'}
-            className={`px-4 py-2 rounded-md text-xs sm:text-sm font-medium transition-colors cursor-pointer ${
+            className={`px-4 py-2 rounded-md text-xs sm:text-sm font-semibold transition-colors cursor-pointer ${
               selectedArea === 'contabilidade'
-                ? 'bg-[#34322F] text-[#F8F6F0]'
-                : 'text-[#5C4A33] hover:text-[#34322F]'
+                ? 'bg-[#C6A15B] text-[#1A1714]'
+                : 'text-[#E4DAC9] hover:text-[#F5EFE6]'
             }`}
           >
             Contabilidade
@@ -66,10 +66,10 @@ export const ContactCtaSection: React.FC = () => {
             type="button"
             onClick={() => setSelectedArea('psicologia')}
             aria-pressed={selectedArea === 'psicologia'}
-            className={`px-4 py-2 rounded-md text-xs sm:text-sm font-medium transition-colors cursor-pointer ${
+            className={`px-4 py-2 rounded-md text-xs sm:text-sm font-semibold transition-colors cursor-pointer ${
               selectedArea === 'psicologia'
-                ? 'bg-[#34322F] text-[#F8F6F0]'
-                : 'text-[#5C4A33] hover:text-[#34322F]'
+                ? 'bg-[#C6A15B] text-[#1A1714]'
+                : 'text-[#E4DAC9] hover:text-[#F5EFE6]'
             }`}
           >
             Psicologia
@@ -81,9 +81,9 @@ export const ContactCtaSection: React.FC = () => {
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-primary w-full sm:w-auto"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-lg bg-[#C6A15B] text-[#1A1714] text-sm font-bold hover:bg-[#D4AF6A] transition-colors cursor-pointer"
           >
-            <MessageCircle className="w-4 h-4 text-[#C2A36A]" />
+            <MessageCircle className="w-4 h-4 text-[#1A1714]" />
             <span>
               Falar pelo WhatsApp (
               {selectedArea === 'contabilidade' ? 'Contabilidade' : 'Psicologia'})
@@ -92,10 +92,10 @@ export const ContactCtaSection: React.FC = () => {
 
           <a
             href="#espaco"
-            className="btn-secondary w-full sm:w-auto"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-lg border border-[#C6A15B]/60 text-[#F5EFE6] bg-[#2E2720] hover:bg-[#3A3128] text-sm font-semibold transition-colors cursor-pointer"
           >
             <span>Conhecer nosso espaço</span>
-            <ArrowRight className="w-4 h-4 text-[#94743E]" />
+            <ArrowRight className="w-4 h-4 text-[#D4AF6A]" />
           </a>
         </div>
       </div>

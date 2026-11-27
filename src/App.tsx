@@ -15,7 +15,7 @@ import { WhatsAppFloatingButton } from './components/WhatsAppFloatingButton';
 
 export const App: React.FC = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-[#F8F6F0] text-[#34322F] font-sans">
+    <div className="min-h-screen flex flex-col bg-[#E4DAC9] text-[#1A1714] font-sans">
       <Header />
       <main id="main-content" className="flex-grow">
         <Hero />

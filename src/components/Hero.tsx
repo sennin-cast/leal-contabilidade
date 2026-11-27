@@ -11,50 +11,55 @@ export const Hero: React.FC = () => {
   return (
     <section
       id="inicio"
-      className="relative min-h-[92vh] pt-28 pb-16 sm:pt-32 sm:pb-24 flex items-center bg-[#F8F6F0] overflow-hidden"
+      className="relative min-h-[92vh] pt-28 pb-16 sm:pt-32 sm:pb-24 flex items-center bg-[#1E1915] text-[#F5EFE6] overflow-hidden"
     >
-      {/* Editorial architectural backdrop */}
-      <div
-        aria-hidden="true"
-        className="absolute top-0 right-0 w-[46%] h-full bg-[#E9E3D9]/55 -z-0 hidden lg:block"
-      />
+      {/* Blurred Watermark Background: Professional at Desk */}
+      <div aria-hidden="true" className="absolute inset-0 z-0 overflow-hidden">
+        <img
+          src="./images/hero-profissional-mesa.jpg"
+          alt=""
+          className="w-full h-full object-cover object-center scale-105 blur-[3px] opacity-25"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#1A1612]/95 via-[#1E1915]/85 to-[#221D18]/70" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#1A1612]/90 via-transparent to-[#1A1612]/55" />
+      </div>
 
       {/* Vertical editorial coordinate gutter */}
       <div
         aria-hidden="true"
         className="hidden xl:flex fixed left-5 top-1/2 -translate-y-1/2 z-20 flex-col items-center gap-4 pointer-events-none select-none"
       >
-        <span className="h-12 w-px bg-[#C2A36A]/60" />
-        <span className="vertical-editorial text-[10px] tracking-[0.28em] uppercase text-[#5C4A33]/85 font-medium">
+        <span className="h-12 w-px bg-[#C6A15B]/70" />
+        <span className="vertical-editorial text-[10px] tracking-[0.28em] uppercase text-[#C6A15B] font-semibold">
           LN INTEGRA · NOVA IGUAÇU
         </span>
-        <span className="h-12 w-px bg-[#C2A36A]/60" />
+        <span className="h-12 w-px bg-[#C6A15B]/70" />
       </div>
 
       <div className="max-w-7xl mx-auto px-5 sm:px-8 w-full relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-12 items-center">
-          {/* Left Column: Editorial Typography & CTAs */}
+          {/* Left Column: High-Contrast Editorial Typography & CTAs */}
           <div className="lg:col-span-6 space-y-7">
-            <div className="hero-enter inline-flex items-center gap-3 px-4 py-2 rounded-full border border-[#C2A36A]/55 bg-[#F8F6F0] shadow-soft">
+            <div className="hero-enter inline-flex items-center gap-3 px-4 py-2 rounded-full border border-[#C6A15B]/55 bg-[#2A231D]/85 backdrop-blur-sm">
               <img
                 src={siteConfig.brand.logoPath}
                 alt="LN INTEGRA"
-                className="w-6 h-6 rounded-full object-cover scale-125 border border-[#C2A36A]/50"
+                className="w-6 h-6 rounded-full object-cover scale-125 border border-[#C6A15B]/60"
               />
-              <span className="text-[11px] tracking-[0.2em] uppercase text-[#5C4A33] font-semibold">
+              <span className="text-[11px] tracking-[0.2em] uppercase text-[#E4DAC9] font-semibold">
                 LN INTEGRA · Nova Iguaçu - RJ
               </span>
             </div>
 
-            <h1 className="hero-enter-delay-1 font-serif text-4xl sm:text-5xl lg:text-[3.75rem] font-medium text-[#34322F] leading-[1.06] tracking-tight">
+            <h1 className="hero-enter-delay-1 font-serif text-4xl sm:text-5xl lg:text-[3.75rem] font-medium text-[#F5EFE6] leading-[1.06] tracking-tight">
               Segurança contábil e{' '}
-              <span className="italic text-[#94743E] font-normal">
+              <span className="italic text-[#D4AF6A] font-normal">
                 cuidado humano
               </span>{' '}
               em cada detalhe.
             </h1>
 
-            <p className="hero-enter-delay-2 text-base sm:text-lg text-[#5C4A33] leading-relaxed max-w-xl font-normal">
+            <p className="hero-enter-delay-2 text-base sm:text-lg text-[#E4DAC9] leading-relaxed max-w-xl font-normal">
               Contabilidade e Psicologia reunidas em um espaço estruturado no Centro de Nova Iguaçu,
               unindo rigor técnico, organização e atendimento acolhedor para empresas e pessoas.
             </p>
@@ -65,70 +70,60 @@ export const Hero: React.FC = () => {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-primary group"
+                className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-lg bg-[#C6A15B] text-[#1A1714] text-sm font-bold hover:bg-[#D4AF6A] transition-colors duration-200 shadow-editorial cursor-pointer"
               >
-                <MessageCircle className="w-4 h-4 text-[#C2A36A]" />
+                <MessageCircle className="w-4 h-4 text-[#1A1714]" />
                 <span>Agendar atendimento</span>
               </a>
 
               <a
                 href="#atuacao"
-                className="btn-secondary group"
+                className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-lg border border-[#C6A15B]/65 text-[#F5EFE6] bg-[#2A231D]/75 hover:bg-[#3A3128] text-sm font-semibold transition-colors duration-200 cursor-pointer"
               >
                 <span>Conheça nossas áreas</span>
-                <ArrowDownRight className="w-4 h-4 text-[#94743E] transition-transform duration-200 group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
+                <ArrowDownRight className="w-4 h-4 text-[#D4AF6A]" />
               </a>
             </div>
 
             {/* Verified Trust & Location Strip */}
-            <div className="hero-enter-delay-2 pt-6 border-t border-[#E9E3D9] space-y-2.5 text-xs text-[#5C4A33]">
+            <div className="hero-enter-delay-2 pt-6 border-t border-[#C6A15B]/25 space-y-2.5 text-xs text-[#D8CCB8]">
               <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-                <span className="inline-flex items-center gap-1.5 font-medium text-[#34322F]">
-                  <MapPin className="w-3.5 h-3.5 text-[#94743E] flex-shrink-0" />
+                <span className="inline-flex items-center gap-1.5 font-medium text-[#F5EFE6]">
+                  <MapPin className="w-3.5 h-3.5 text-[#D4AF6A] flex-shrink-0" />
                   <span>Rua Otávio Tarquínio, 74 · Sala 201 · Centro, Nova Iguaçu</span>
                 </span>
               </div>
               <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
                 <span className="inline-flex items-center gap-1.5">
-                  <ShieldCheck className="w-3.5 h-3.5 text-[#94743E] flex-shrink-0" />
+                  <ShieldCheck className="w-3.5 h-3.5 text-[#D4AF6A] flex-shrink-0" />
                   <span>Registros CRC RJ &amp; CRP RJ</span>
                 </span>
-                <span aria-hidden="true" className="w-1 h-1 rounded-full bg-[#C2A36A]" />
+                <span aria-hidden="true" className="w-1 h-1 rounded-full bg-[#C6A15B]" />
                 <span>Atendimento presencial e sob agendamento</span>
               </div>
             </div>
           </div>
 
-          {/* Right Column: Asymmetric Overlapping Architectural Frame */}
+          {/* Right Column: Clean Office Photograph */}
           <div className="lg:col-span-6">
             <div className="relative max-w-xl mx-auto lg:ml-auto">
-              {/* Primary Real Office Photo */}
-              <div className="rounded-2xl overflow-hidden border border-[#E9E3D9] shadow-editorial bg-[#E9E3D9]">
+              <div className="rounded-2xl overflow-hidden border border-[#C6A15B]/35 shadow-editorial bg-[#2A231D]">
                 <img
-                  src="./images/office/recepcao-logo.jpg"
-                  alt="Recepção do escritório LN INTEGRA com identidade visual em dourado"
+                  src="./images/office/sala-acolhimento.jpg"
+                  alt="Sala de atendimento e acolhimento do escritório LN INTEGRA em Nova Iguaçu"
                   fetchPriority="high"
-                  className="w-full h-[380px] sm:h-[480px] object-cover object-center"
+                  className="w-full h-[380px] sm:h-[460px] object-cover object-center"
                 />
-              </div>
-
-              {/* Overlapping Secondary Architectural Detail (Desktop) */}
-              <div className="hidden sm:block absolute -top-6 -right-6 w-36 h-44 rounded-xl overflow-hidden border-2 border-[#F8F6F0] shadow-editorial bg-[#E9E3D9]">
-                <img
-                  src="./images/office/balcao-marmore.jpg"
-                  alt="Detalhe da mesa de atendimento em mármore"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-
-              {/* Floating Editorial Caption */}
-              <div className="mt-4 sm:mt-0 sm:absolute sm:-bottom-6 sm:-left-6 bg-[#F8F6F0]/95 backdrop-blur-sm border border-[#C2A36A]/55 rounded-xl px-5 py-4 shadow-soft max-w-xs">
-                <p className="text-[10px] uppercase tracking-[0.2em] text-[#94743E] font-semibold">
-                  Sala 201 · Nova Iguaçu
-                </p>
-                <p className="font-serif text-lg text-[#34322F] mt-1 leading-snug">
-                  Ambiente preparado para receber você com tranquilidade e discrição.
-                </p>
+                <div className="bg-[#221D18]/95 border-t border-[#C6A15B]/30 px-6 py-4 flex items-center justify-between gap-4">
+                  <div>
+                    <p className="text-[10px] uppercase tracking-[0.2em] text-[#D4AF6A] font-semibold">
+                      Sala 201 · Centro, Nova Iguaçu
+                    </p>
+                    <p className="font-serif text-lg text-[#F5EFE6] mt-0.5 leading-snug">
+                      Ambiente preparado para receber você com tranquilidade e discrição.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

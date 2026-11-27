@@ -29,20 +29,20 @@ export const WhatsAppFloatingButton: React.FC = () => {
         <div
           role="dialog"
           aria-label="Atendimento rápido via WhatsApp"
-          className="w-72 rounded-2xl bg-[#F8F6F0] border border-[#C2A36A]/65 shadow-editorial p-4 space-y-3"
+          className="w-72 rounded-2xl bg-[#EDE5D8] border border-[#7A5B22]/60 shadow-editorial p-4 space-y-3"
         >
-          <div className="flex items-center justify-between border-b border-[#E9E3D9] pb-2.5">
+          <div className="flex items-center justify-between border-b border-[#C4B69F] pb-2.5">
             <div>
-              <p className="font-serif text-lg text-[#34322F] leading-none">
+              <p className="font-serif text-lg font-semibold text-[#1A1714] leading-none">
                 Atendimento WhatsApp
               </p>
-              <p className="text-[11px] text-[#5C4A33] mt-1">Escolha a área desejada</p>
+              <p className="text-[11px] text-[#3A3128] mt-1">Escolha a área desejada</p>
             </div>
             <button
               type="button"
               onClick={() => setOpen(false)}
               aria-label="Fechar opções de WhatsApp"
-              className="p-1 rounded-md text-[#5C4A33] hover:text-[#34322F] cursor-pointer"
+              className="p-1 rounded-md text-[#3A3128] hover:text-[#1A1714] cursor-pointer"
             >
               <X className="w-4 h-4" />
             </button>
@@ -53,26 +53,26 @@ export const WhatsAppFloatingButton: React.FC = () => {
               href={accountingUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-between p-3 rounded-xl border border-[#E9E3D9] hover:border-[#C2A36A] bg-[#E9E3D9]/30 transition-colors cursor-pointer"
+              className="flex items-center justify-between p-3 rounded-xl border border-[#C4B69F] hover:border-[#7A5B22] bg-[#E4DAC9] transition-colors cursor-pointer"
             >
               <div>
-                <p className="text-xs font-semibold text-[#34322F]">Contabilidade</p>
-                <p className="text-[11px] text-[#5C4A33]">(21) 97974-1307</p>
+                <p className="text-xs font-bold text-[#1A1714]">Contabilidade</p>
+                <p className="text-[11px] text-[#3A3128]">(21) 97974-1307</p>
               </div>
-              <ArrowUpRight className="w-4 h-4 text-[#94743E]" />
+              <ArrowUpRight className="w-4 h-4 text-[#7A5B22]" />
             </a>
 
             <a
               href={psychologyUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-between p-3 rounded-xl border border-[#E9E3D9] hover:border-[#C2A36A] bg-[#E9E3D9]/30 transition-colors cursor-pointer"
+              className="flex items-center justify-between p-3 rounded-xl border border-[#C4B69F] hover:border-[#7A5B22] bg-[#E4DAC9] transition-colors cursor-pointer"
             >
               <div>
-                <p className="text-xs font-semibold text-[#34322F]">Psicologia</p>
-                <p className="text-[11px] text-[#5C4A33]">(21) 97427-1660</p>
+                <p className="text-xs font-bold text-[#1A1714]">Psicologia</p>
+                <p className="text-[11px] text-[#3A3128]">(21) 97427-1660</p>
               </div>
-              <ArrowUpRight className="w-4 h-4 text-[#94743E]" />
+              <ArrowUpRight className="w-4 h-4 text-[#7A5B22]" />
             </a>
           </div>
         </div>
@@ -83,10 +83,10 @@ export const WhatsAppFloatingButton: React.FC = () => {
         onClick={() => setOpen((prev) => !prev)}
         aria-label={open ? 'Fechar WhatsApp' : 'Abrir atendimento via WhatsApp'}
         aria-expanded={open}
-        className="group inline-flex items-center gap-2.5 px-4 py-3 rounded-full bg-[#34322F] text-[#F8F6F0] border border-[#C2A36A]/70 shadow-editorial hover:bg-[#5C4A33] transition-colors duration-200 cursor-pointer"
+        className="group inline-flex items-center gap-2.5 px-4 py-3 rounded-full bg-[#221D18] text-[#F5EFE6] border border-[#C6A15B]/75 shadow-editorial hover:bg-[#3A3128] transition-colors duration-200 cursor-pointer"
       >
-        <MessageCircle className="w-4 h-4 text-[#C2A36A]" />
-        <span className="text-xs font-medium tracking-wide hidden sm:inline">WhatsApp</span>
+        <MessageCircle className="w-4 h-4 text-[#D4AF6A]" />
+        <span className="text-xs font-semibold tracking-wide hidden sm:inline">WhatsApp</span>
       </button>
     </div>
   );

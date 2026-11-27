@@ -43,19 +43,19 @@ export const FaqSection: React.FC = () => {
     <section
       id="faq"
       ref={ref}
-      className={`py-20 sm:py-28 bg-[#E9E3D9]/40 border-t border-[#E9E3D9] reveal-section ${
+      className={`py-20 sm:py-28 bg-[#E4DAC9] border-t border-[#C4B69F] reveal-section ${
         isVisible ? 'is-visible' : ''
       }`}
     >
       <div className="max-w-4xl mx-auto px-5 sm:px-8">
         <div className="text-center max-w-2xl mx-auto mb-12 space-y-4">
           <div className="inline-flex items-center gap-3">
-            <span className="h-px w-8 bg-[#C2A36A]" />
+            <span className="h-px w-8 bg-[#7A5B22]" />
             <span className="section-eyebrow-text">Dúvidas Frequentes</span>
-            <span className="h-px w-8 bg-[#C2A36A]" />
+            <span className="h-px w-8 bg-[#7A5B22]" />
           </div>
           <h2 className="section-heading">Perguntas comuns sobre nosso atendimento</h2>
-          <p className="text-sm sm:text-base text-[#5C4A33] leading-relaxed">
+          <p className="text-sm sm:text-base text-[#3A3128] leading-relaxed font-medium">
             Informações essenciais sobre localização, agendamento e atuação da LN INTEGRA.
           </p>
         </div>
@@ -69,7 +69,7 @@ export const FaqSection: React.FC = () => {
             return (
               <div
                 key={item.question}
-                className="bg-[#F8F6F0] border border-[#E9E3D9] rounded-xl overflow-hidden transition-colors hover:border-[#C2A36A]/60"
+                className="bg-[#EDE5D8] border border-[#C4B69F] rounded-xl overflow-hidden transition-colors hover:border-[#7A5B22]"
               >
                 <h3>
                   <button
@@ -80,11 +80,11 @@ export const FaqSection: React.FC = () => {
                     onClick={() => setOpenIndex(isOpen ? null : idx)}
                     className="w-full px-6 py-5 text-left flex items-center justify-between gap-4 cursor-pointer"
                   >
-                    <span className="font-serif text-xl sm:text-[1.35rem] text-[#34322F] font-medium leading-snug">
+                    <span className="font-serif text-xl sm:text-[1.35rem] text-[#1A1714] font-semibold leading-snug">
                       {item.question}
                     </span>
                     <ChevronDown
-                      className={`w-5 h-5 text-[#94743E] flex-shrink-0 transition-transform duration-200 ${
+                      className={`w-5 h-5 text-[#7A5B22] flex-shrink-0 transition-transform duration-200 ${
                         isOpen ? 'rotate-180' : ''
                       }`}
                     />
@@ -95,7 +95,7 @@ export const FaqSection: React.FC = () => {
                   role="region"
                   aria-labelledby={buttonId}
                   hidden={!isOpen}
-                  className="px-6 pb-5 pt-0 text-sm text-[#5C4A33] leading-relaxed border-t border-[#E9E3D9]/60"
+                  className="px-6 pb-5 pt-0 text-sm text-[#3A3128] leading-relaxed border-t border-[#C4B69F]/70"
                 >
                   <p className="pt-4">{item.answer}</p>
                 </div>

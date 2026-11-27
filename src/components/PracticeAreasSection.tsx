@@ -32,7 +32,7 @@ export const PracticeAreasSection: React.FC = () => {
     <section
       id="atuacao"
       ref={ref}
-      className={`py-20 sm:py-28 bg-[#E9E3D9]/55 border-t border-[#E9E3D9] reveal-section ${
+      className={`py-20 sm:py-28 bg-[#D8CCB8] border-t border-[#C4B69F] reveal-section ${
         isVisible ? 'is-visible' : ''
       }`}
     >
@@ -47,59 +47,59 @@ export const PracticeAreasSection: React.FC = () => {
               Duas especialidades independentes, unidas pelo mesmo padrão de cuidado.
             </h2>
           </div>
-          <p className="text-sm text-[#5C4A33] max-w-sm leading-relaxed">
+          <p className="text-sm text-[#3A3128] max-w-sm leading-relaxed font-medium">
             Atuação dedicada em cada frente, preservando a autonomia técnica e a identidade
             acolhedora da LN INTEGRA.
           </p>
         </div>
 
         {/* Architectural Diptych */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 border border-[#B7AEA1]/50 rounded-2xl overflow-hidden bg-[#F8F6F0] shadow-soft">
+        <div className="grid grid-cols-1 lg:grid-cols-2 border border-[#B5A58C] rounded-2xl overflow-hidden bg-[#EDE5D8] shadow-soft">
           {/* 01 — CONTABILIDADE */}
           <article
             id="contabilidade"
-            className="p-8 sm:p-12 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-[#E9E3D9]"
+            className="p-8 sm:p-12 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-[#C4B69F]"
           >
             <div className="space-y-6">
               <div className="flex items-start justify-between">
                 <div className="flex items-center gap-3.5">
-                  <div className="w-11 h-11 rounded-lg border border-[#C2A36A]/60 bg-[#E9E3D9]/25 flex items-center justify-center text-[#94743E]">
-                    <Calculator className="w-5 h-5 stroke-[1.5]" />
+                  <div className="w-11 h-11 rounded-lg border border-[#7A5B22]/45 bg-[#E4DAC9] flex items-center justify-center text-[#7A5B22]">
+                    <Calculator className="w-5 h-5 stroke-[1.75]" />
                   </div>
                   <div>
-                    <span className="text-[11px] uppercase tracking-[0.2em] text-[#5C4A33] font-semibold block">
+                    <span className="text-[11px] uppercase tracking-[0.2em] text-[#7A5B22] font-bold block">
                       Núcleo Empresarial
                     </span>
-                    <h3 className="font-serif text-3xl text-[#34322F] font-medium">
+                    <h3 className="font-serif text-3xl text-[#1A1714] font-semibold">
                       Contabilidade
                     </h3>
                   </div>
                 </div>
                 <span
                   aria-hidden="true"
-                  className="font-serif text-4xl sm:text-5xl text-[#C2A36A]/45 font-light leading-none select-none"
+                  className="font-serif text-4xl sm:text-5xl text-[#7A5B22]/35 font-light leading-none select-none"
                 >
                   01
                 </span>
               </div>
 
-              <p className="text-base text-[#5C4A33] leading-relaxed">
+              <p className="text-base text-[#3A3128] leading-relaxed">
                 Organização, orientação e suporte contábil para quem busca mais tranquilidade e
                 segurança na gestão de suas atividades.
               </p>
 
               <ul className="space-y-3 pt-2">
                 {accountingPillars.map((pillar) => (
-                  <li key={pillar} className="flex items-start gap-3 text-sm text-[#34322F]">
-                    <span className="w-5 h-5 rounded-full bg-[#E9E3D9]/70 border border-[#C2A36A]/50 flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <Check className="w-3 h-3 text-[#94743E]" />
+                  <li key={pillar} className="flex items-start gap-3 text-sm text-[#1A1714] font-medium">
+                    <span className="w-5 h-5 rounded-full bg-[#E4DAC9] border border-[#7A5B22]/50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <Check className="w-3 h-3 text-[#7A5B22]" />
                     </span>
                     <span>{pillar}</span>
                   </li>
                 ))}
               </ul>
 
-              <p className="text-xs text-[#5C4A33] pt-2 border-t border-[#E9E3D9]/80">
+              <p className="text-xs text-[#3A3128] pt-3 border-t border-[#C4B69F]/80">
                 Consulte diretamente a equipe contábil para alinhar o escopo ideal para a sua
                 demanda.
               </p>
@@ -113,7 +113,7 @@ export const PracticeAreasSection: React.FC = () => {
                 className="btn-primary group w-full sm:w-auto"
               >
                 <span>Falar com a equipe de Contabilidade</span>
-                <ArrowUpRight className="w-4 h-4 text-[#C2A36A] transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                <ArrowUpRight className="w-4 h-4 text-[#C6A15B] transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
             </div>
           </article>
@@ -121,48 +121,48 @@ export const PracticeAreasSection: React.FC = () => {
           {/* 02 — PSICOLOGIA */}
           <article
             id="psicologia"
-            className="p-8 sm:p-12 flex flex-col justify-between bg-[#E9E3D9]/25"
+            className="p-8 sm:p-12 flex flex-col justify-between bg-[#E4DAC9]/75"
           >
             <div className="space-y-6">
               <div className="flex items-start justify-between">
                 <div className="flex items-center gap-3.5">
-                  <div className="w-11 h-11 rounded-lg border border-[#C2A36A]/60 bg-[#F8F6F0] flex items-center justify-center text-[#94743E]">
-                    <HeartHandshake className="w-5 h-5 stroke-[1.5]" />
+                  <div className="w-11 h-11 rounded-lg border border-[#7A5B22]/45 bg-[#EDE5D8] flex items-center justify-center text-[#7A5B22]">
+                    <HeartHandshake className="w-5 h-5 stroke-[1.75]" />
                   </div>
                   <div>
-                    <span className="text-[11px] uppercase tracking-[0.2em] text-[#5C4A33] font-semibold block">
+                    <span className="text-[11px] uppercase tracking-[0.2em] text-[#7A5B22] font-bold block">
                       Núcleo Clínico
                     </span>
-                    <h3 className="font-serif text-3xl text-[#34322F] font-medium">
+                    <h3 className="font-serif text-3xl text-[#1A1714] font-semibold">
                       Psicologia
                     </h3>
                   </div>
                 </div>
                 <span
                   aria-hidden="true"
-                  className="font-serif text-4xl sm:text-5xl text-[#C2A36A]/45 font-light leading-none select-none"
+                  className="font-serif text-4xl sm:text-5xl text-[#7A5B22]/35 font-light leading-none select-none"
                 >
                   02
                 </span>
               </div>
 
-              <p className="text-base text-[#5C4A33] leading-relaxed">
+              <p className="text-base text-[#3A3128] leading-relaxed">
                 Um espaço de escuta, acolhimento e cuidado, com atenção à individualidade e ao
                 bem-estar de cada pessoa.
               </p>
 
               <ul className="space-y-3 pt-2">
                 {psychologyPillars.map((pillar) => (
-                  <li key={pillar} className="flex items-start gap-3 text-sm text-[#34322F]">
-                    <span className="w-5 h-5 rounded-full bg-[#F8F6F0] border border-[#C2A36A]/50 flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <Check className="w-3 h-3 text-[#94743E]" />
+                  <li key={pillar} className="flex items-start gap-3 text-sm text-[#1A1714] font-medium">
+                    <span className="w-5 h-5 rounded-full bg-[#EDE5D8] border border-[#7A5B22]/50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <Check className="w-3 h-3 text-[#7A5B22]" />
                     </span>
                     <span>{pillar}</span>
                   </li>
                 ))}
               </ul>
 
-              <p className="text-xs text-[#5C4A33] pt-2 border-t border-[#E9E3D9]">
+              <p className="text-xs text-[#3A3128] pt-3 border-t border-[#C4B69F]">
                 Modalidades e horários de atendimento confirmados diretamente com a profissional
                 responsável.
               </p>
@@ -176,7 +176,7 @@ export const PracticeAreasSection: React.FC = () => {
                 className="btn-secondary group w-full sm:w-auto"
               >
                 <span>Falar com a equipe de Psicologia</span>
-                <ArrowUpRight className="w-4 h-4 text-[#94743E] transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                <ArrowUpRight className="w-4 h-4 text-[#7A5B22] transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
             </div>
           </article>

@@ -123,6 +123,13 @@ export const siteConfig = {
       caption: 'Estrutura organizada para atendimento individualizado',
       aspect: 'wide',
     },
+    {
+      id: 'visao-geral',
+      src: './images/office/visao-geral.jpg',
+      alt: 'Perspectiva completa do espaço integrado LN INTEGRA',
+      caption: 'Conforto, discrição e acolhimento desde a chegada',
+      aspect: 'square',
+    },
   ] as OfficePhoto[],
 };
 

@@ -13,10 +13,16 @@ const navLinks = [
 
 export const Header: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 24);
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      setScrollProgress(docHeight > 0 ? Math.min(100, (y / docHeight) * 100) : 0);
+    };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
@@ -45,7 +51,7 @@ export const Header: React.FC = () => {
             className="flex items-center gap-3.5 group focus:outline-none"
             aria-label="LN INTEGRA — Ir para o início"
           >
-            <div className="w-11 h-11 rounded-full overflow-hidden border border-[#C2A36A]/60 bg-[#F8F6F0] flex-shrink-0 transition-transform duration-300 group-hover:scale-105">
+            <div className="w-11 h-11 rounded-full overflow-hidden border border-[#C2A36A]/65 bg-[#F8F6F0] flex-shrink-0 transition-transform duration-300 group-hover:scale-105">
               <img
                 src={siteConfig.brand.logoPath}
                 alt="Logo LN INTEGRA"
@@ -79,7 +85,7 @@ export const Header: React.FC = () => {
           <div className="hidden lg:flex items-center">
             <a
               href="#contato"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-[#C2A36A] text-sm font-medium text-[#34322F] bg-[#F8F6F0]/80 hover:bg-[#C2A36A] hover:text-[#F8F6F0] transition-all duration-300"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-[#C2A36A] text-sm font-medium text-[#34322F] bg-[#F8F6F0]/85 hover:bg-[#34322F] hover:text-[#F8F6F0] hover:border-[#34322F] transition-all duration-300"
             >
               <span>Fale conosco</span>
               <ArrowUpRight className="w-4 h-4" />
@@ -97,6 +103,13 @@ export const Header: React.FC = () => {
             <Menu className="w-5 h-5" />
           </button>
         </div>
+
+        {/* Hairline scroll progress */}
+        <div
+          aria-hidden="true"
+          className="h-[1.5px] bg-[#C2A36A] transition-[width] duration-150 ease-out"
+          style={{ width: `${scrollProgress}%` }}
+        />
       </header>
 
       {/* Mobile Drawer */}

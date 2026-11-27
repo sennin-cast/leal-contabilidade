@@ -54,7 +54,7 @@ export const SpaceGallerySection: React.FC = () => {
           </p>
         </div>
 
-        {/* Asymmetric Editorial Gallery Grid */}
+        {/* Balanced 6-Photo Architectural Mosaic */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-5">
           {photos.map((photo, index) => {
             const spanClass =
@@ -62,7 +62,9 @@ export const SpaceGallerySection: React.FC = () => {
                 ? 'lg:col-span-7 h-72 sm:h-96'
                 : index === 1
                 ? 'lg:col-span-5 h-72 sm:h-96'
-                : 'lg:col-span-4 h-64 sm:h-72';
+                : index === 2 || index === 3
+                ? 'lg:col-span-6 h-64 sm:h-80'
+                : 'lg:col-span-6 h-64 sm:h-72';
 
             return (
               <button
@@ -77,7 +79,7 @@ export const SpaceGallerySection: React.FC = () => {
                   loading="lazy"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#34322F]/65 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#34322F]/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-[#F8F6F0] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <span className="text-xs font-medium tracking-wide">{photo.caption}</span>
                   <span className="p-1.5 rounded-full bg-[#F8F6F0]/20 backdrop-blur-sm">

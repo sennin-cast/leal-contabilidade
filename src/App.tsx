@@ -9,6 +9,7 @@ import { DifferentiatorsSection } from './components/DifferentiatorsSection';
 import { ContactCtaSection } from './components/ContactCtaSection';
 import { ContactLocationSection } from './components/ContactLocationSection';
 import { Footer } from './components/Footer';
+import { WhatsAppFloatingButton } from './components/WhatsAppFloatingButton';
 
 export const App: React.FC = () => {
   return (
@@ -25,6 +26,7 @@ export const App: React.FC = () => {
         <ContactLocationSection />
       </main>
       <Footer />
+      <WhatsAppFloatingButton />
     </div>
   );
 };

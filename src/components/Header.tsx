@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
 import { siteConfig } from '../config/siteConfig';
 
@@ -14,23 +14,48 @@ const navLinks = [
 
 export const Header: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const progressBarRef = useRef<HTMLDivElement | null>(null);
+  const openButtonRef = useRef<HTMLButtonElement | null>(null);
+  const closeButtonRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
-    const onScroll = () => {
+    let rafId = 0;
+    const updateScroll = () => {
+      rafId = 0;
       const y = window.scrollY;
-      setScrolled(y > 24);
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      setScrollProgress(docHeight > 0 ? Math.min(100, (y / docHeight) * 100) : 0);
+      const isScrolled = y > 24;
+      setScrolled((prev) => (prev === isScrolled ? prev : isScrolled));
+
+      if (progressBarRef.current) {
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const ratio = docHeight > 0 ? Math.min(1, Math.max(0, y / docHeight)) : 0;
+        progressBarRef.current.style.transform = `scaleX(${ratio})`;
+      }
     };
-    onScroll();
+
+    const onScroll = () => {
+      if (!rafId) {
+        rafId = window.requestAnimationFrame(updateScroll);
+      }
+    };
+
+    updateScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      if (rafId) window.cancelAnimationFrame(rafId);
+    };
   }, []);
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? 'hidden' : '';
+    if (mobileOpen) {
+      closeButtonRef.current?.focus();
+    } else if (document.activeElement === closeButtonRef.current) {
+      openButtonRef.current?.focus();
+    }
+
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && mobileOpen) setMobileOpen(false);
     };
@@ -51,10 +76,10 @@ export const Header: React.FC = () => {
       </a>
 
       <header
-        className={`fixed top-0 inset-x-0 z-40 transition-all duration-300 ${
+        className={`fixed top-0 inset-x-0 z-40 transition-[background-color,border-color,color,box-shadow] duration-300 ${
           scrolled
             ? 'bg-[#E4DAC9]/95 backdrop-blur-md border-b border-[#C4B69F] shadow-soft text-[#181512]'
-            : 'bg-[#1C1814]/65 backdrop-blur-sm border-b border-[#C6A15B]/15 text-[#F5EFE6]'
+            : 'surface-dark bg-[#1C1814]/65 backdrop-blur-sm border-b border-[#C6A15B]/15 text-[#F5EFE6]'
         }`}
       >
         <div className="max-w-7xl mx-auto px-5 sm:px-8 h-20 flex items-center justify-between gap-4">
@@ -107,18 +132,19 @@ export const Header: React.FC = () => {
           <div className="hidden lg:flex items-center">
             <a
               href="#contato"
-              className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-colors duration-200 cursor-pointer ${
+              className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold active:scale-[0.98] transition-[background-color,color,transform] duration-200 cursor-pointer ${
                 scrolled
                   ? 'bg-[#1C1814] text-[#F5EFE6] hover:bg-[#3A3128]'
                   : 'bg-[#C6A15B] text-[#181512] hover:bg-[#D4AF6A]'
               }`}
             >
               <span>Agendar conversa</span>
-              <ArrowUpRight className="w-4 h-4" />
+              <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
             </a>
           </div>
 
           <button
+            ref={openButtonRef}
             type="button"
             onClick={() => setMobileOpen(true)}
             aria-label="Abrir menu de navegação"
@@ -129,14 +155,15 @@ export const Header: React.FC = () => {
                 : 'border-[#C6A15B]/50 bg-[#1C1814]/80 text-[#F5EFE6]'
             }`}
           >
-            <Menu className="w-5 h-5" />
+            <Menu className="w-5 h-5" aria-hidden="true" />
           </button>
         </div>
 
         <div
+          ref={progressBarRef}
           aria-hidden="true"
-          className="h-[2px] bg-[#C6A15B] transition-[width] duration-150 ease-out"
-          style={{ width: `${scrollProgress}%` }}
+          className="h-[2px] w-full bg-[#C6A15B] origin-left transition-transform duration-100 ease-out"
+          style={{ transform: 'scaleX(0)' }}
         />
       </header>
 
@@ -155,20 +182,22 @@ export const Header: React.FC = () => {
           role="dialog"
           aria-modal="true"
           aria-label="Menu de navegação"
-          className={`absolute top-0 right-0 h-full w-4/5 max-w-xs bg-[#E4DAC9] border-l border-[#C4B69F] p-6 flex flex-col justify-between shadow-editorial transition-transform duration-300 ${
+          className={`absolute top-0 right-0 h-full w-4/5 max-w-xs bg-[#E4DAC9] border-l border-[#C4B69F] p-6 flex flex-col justify-between shadow-editorial overscroll-contain transition-transform duration-300 ${
             mobileOpen ? 'translate-x-0' : 'translate-x-full'
           }`}
+          style={{ transitionTimingFunction: 'var(--ease-drawer)' }}
         >
           <div>
             <div className="flex items-center justify-between pb-5 border-b border-[#C4B69F]">
               <span className="font-display text-lg font-bold text-[#181512]">LN INTEGRA</span>
               <button
+                ref={closeButtonRef}
                 type="button"
                 onClick={() => setMobileOpen(false)}
                 aria-label="Fechar menu"
                 className="p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl text-[#3A3128] hover:text-[#181512] hover:bg-[#D8CCB8] transition-colors cursor-pointer"
               >
-                <X className="w-5 h-5" />
+                <X className="w-5 h-5" aria-hidden="true" />
               </button>
             </div>
 

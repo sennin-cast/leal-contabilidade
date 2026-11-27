@@ -12,6 +12,13 @@
   --gold: #C6A15B;
   --gold-ink: #7A5B22;
   --border-warm: #C4B69F;
+  --focus-offset: #E4DAC9;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.surface-dark {
+  --focus-offset: #1C1814;
 }
 
 @layer base {
@@ -34,8 +41,18 @@
     letter-spacing: -0.025em;
   }
 
+  h1 {
+    text-wrap: balance;
+  }
+
+  section[id] {
+    scroll-margin-top: 5.5rem;
+  }
+
   a, button, input, select, textarea {
-    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C6A15B] focus-visible:ring-offset-2 focus-visible:ring-offset-[#E4DAC9];
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: rgba(198, 161, 91, 0.2);
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C6A15B] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--focus-offset)];
   }
 
   ::-webkit-scrollbar {
@@ -58,15 +75,18 @@
 
 @layer components {
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#1C1814] text-[#F5EFE6] text-sm font-semibold hover:bg-[#3A3128] transition-colors duration-200 shadow-soft cursor-pointer;
+    @apply inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#1C1814] text-[#F5EFE6] text-sm font-semibold hover:bg-[#3A3128] active:scale-[0.98] transition-[background-color,transform,box-shadow] duration-200 shadow-soft cursor-pointer;
+    transition-timing-function: var(--ease-out);
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl border border-[#7A5B22] text-[#181512] bg-[#EDE5D8] hover:bg-[#D8CCB8] text-sm font-semibold transition-colors duration-200 cursor-pointer;
+    @apply inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl border border-[#7A5B22] text-[#181512] bg-[#EDE5D8] hover:bg-[#D8CCB8] active:scale-[0.98] text-sm font-semibold transition-[background-color,border-color,transform] duration-200 cursor-pointer;
+    transition-timing-function: var(--ease-out);
   }
 
   .section-heading {
     @apply font-display text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold text-[#181512] leading-[1.1] tracking-tight;
+    text-wrap: balance;
   }
 }
 
@@ -80,15 +100,23 @@
   }
 
   .hero-enter {
-    animation: heroFadeUp 650ms cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation: heroFadeUp 650ms var(--ease-out) both;
   }
 
   .hero-enter-delay-1 {
-    animation: heroFadeUp 650ms cubic-bezier(0.16, 1, 0.3, 1) 90ms both;
+    animation: heroFadeUp 650ms var(--ease-out) 90ms both;
   }
 
   .hero-enter-delay-2 {
-    animation: heroFadeUp 650ms cubic-bezier(0.16, 1, 0.3, 1) 180ms both;
+    animation: heroFadeUp 650ms var(--ease-out) 180ms both;
+  }
+
+  .popover-enter {
+    animation: surfaceScaleIn 180ms var(--ease-out) both;
+  }
+
+  .modal-enter {
+    animation: surfaceScaleIn 220ms var(--ease-out) both;
   }
 }
 
@@ -103,6 +131,17 @@
   }
 }
 
+@keyframes surfaceScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto !important;
@@ -110,7 +149,9 @@
 
   .hero-enter,
   .hero-enter-delay-1,
-  .hero-enter-delay-2 {
+  .hero-enter-delay-2,
+  .popover-enter,
+  .modal-enter {
     opacity: 1 !important;
     transform: none !important;
     animation: none !important;

@@ -63,9 +63,9 @@ export const FaqSection: React.FC = () => {
               rel="noopener noreferrer"
               className="btn-primary inline-flex"
             >
-              <MessageCircle className="w-4 h-4 text-[#C6A15B]" />
+              <MessageCircle className="w-4 h-4 text-[#C6A15B]" aria-hidden="true" />
               <span>Tirar dúvida no WhatsApp</span>
-              <ArrowUpRight className="w-4 h-4 text-[#C6A15B]" />
+              <ArrowUpRight className="w-4 h-4 text-[#C6A15B]" aria-hidden="true" />
             </a>
           </div>
 
@@ -91,9 +91,9 @@ export const FaqSection: React.FC = () => {
                         {item.question}
                       </span>
                       <ChevronDown
-                        className={`w-5 h-5 text-[#7A5B22] flex-shrink-0 transition-transform duration-200 ${
-                          isOpen ? 'rotate-180' : ''
-                        }`}
+                        aria-hidden="true"
+                        className={`w-5 h-5 text-[#7A5B22] flex-shrink-0 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''
+                          }`}
                       />
                     </button>
                   </h3>

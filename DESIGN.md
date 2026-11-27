@@ -17,3 +17,9 @@
 - `gold`: `#C6A15B` (destaques e ações sobre fundo escuro)
 - `gold-ink`: `#7A5B22` (destaques bronze sobre fundo bege)
 - `border`: `#C4B69F` (divisórias e bordas sutis)
+
+## 3. Motion, Interação & Acessibilidade
+- **Curvas de easing:** `--ease-out: cubic-bezier(0.23, 1, 0.32, 1)` para entradas e microinterações; `--ease-drawer: cubic-bezier(0.32, 0.72, 0, 1)` para drawers.
+- **Feedback tátil:** Botões e controles interativos usam `active:scale-[0.98]` e `touch-action: manipulation`.
+- **Foco adaptativo:** `--focus-offset` alterna entre `#E4DAC9` (superfícies claras) e `#1C1814` (`.surface-dark`), garantindo contraste de foco visível em toda a página.
+- **Âncoras e modais:** `section[id]` usa `scroll-margin-top: 5.5rem` para compensar o header fixo; modais e drawers usam `overscroll-behavior: contain`, trava de scroll e restauração de foco; `prefers-reduced-motion` desativa animações.

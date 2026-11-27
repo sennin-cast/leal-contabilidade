@@ -21,7 +21,7 @@ export const Hero: React.FC = () => {
   return (
     <section
       id="inicio"
-      className="relative min-h-[92vh] pt-28 pb-16 sm:pt-32 sm:pb-24 flex items-center bg-[#1C1814] text-[#F5EFE6] overflow-hidden"
+      className="surface-dark relative min-h-[92vh] pt-28 pb-16 sm:pt-32 sm:pb-24 flex items-center bg-[#1C1814] text-[#F5EFE6] overflow-hidden"
     >
       {/* Blurred Watermark Background: Professional at Desk */}
       <div aria-hidden="true" className="absolute inset-0 z-0 overflow-hidden">
@@ -87,9 +87,9 @@ export const Hero: React.FC = () => {
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#C6A15B] text-[#181512] text-sm font-bold hover:bg-[#D4AF6A] transition-colors duration-200 shadow-editorial cursor-pointer"
+                  className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#C6A15B] text-[#181512] text-sm font-bold hover:bg-[#D4AF6A] active:scale-[0.98] transition-[background-color,transform] duration-200 shadow-editorial cursor-pointer"
                 >
-                  <MessageCircle className="w-4 h-4 text-[#181512]" />
+                  <MessageCircle className="w-4 h-4 text-[#181512]" aria-hidden="true" />
                   <span>
                     Falar com {area === 'contabilidade' ? 'Contabilidade' : 'Psicologia'}
                   </span>
@@ -97,10 +97,10 @@ export const Hero: React.FC = () => {
 
                 <a
                   href="#contato"
-                  className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl border border-[#C6A15B]/60 text-[#F5EFE6] bg-[#2A241E]/75 hover:bg-[#3A3128] text-sm font-semibold transition-colors duration-200 cursor-pointer"
+                  className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl border border-[#C6A15B]/60 text-[#F5EFE6] bg-[#2A241E]/75 hover:bg-[#3A3128] active:scale-[0.98] text-sm font-semibold transition-[background-color,transform] duration-200 cursor-pointer"
                 >
                   <span>Enviar mensagem</span>
-                  <ArrowDownRight className="w-4 h-4 text-[#D4AF6A]" />
+                  <ArrowDownRight className="w-4 h-4 text-[#D4AF6A]" aria-hidden="true" />
                 </a>
               </div>
             </div>
@@ -108,11 +108,11 @@ export const Hero: React.FC = () => {
             {/* Verified Trust & Location Strip */}
             <div className="hero-enter-delay-2 pt-5 border-t border-[#C6A15B]/25 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-[#D8CCB8]">
               <span className="inline-flex items-center gap-1.5 font-medium text-[#F5EFE6]">
-                <MapPin className="w-3.5 h-3.5 text-[#D4AF6A] flex-shrink-0" />
+                <MapPin className="w-3.5 h-3.5 text-[#D4AF6A] flex-shrink-0" aria-hidden="true" />
                 <span>Rua Otávio Tarquínio, 74 · Sala 201 · Centro, Nova Iguaçu</span>
               </span>
               <span className="inline-flex items-center gap-1.5 tabular-nums">
-                <ShieldCheck className="w-3.5 h-3.5 text-[#D4AF6A] flex-shrink-0" />
+                <ShieldCheck className="w-3.5 h-3.5 text-[#D4AF6A] flex-shrink-0" aria-hidden="true" />
                 <span>CRC RJ &amp; CRP RJ ativos</span>
               </span>
             </div>
@@ -125,6 +125,7 @@ export const Hero: React.FC = () => {
                 src="./images/office/sala-acolhimento.jpg"
                 alt="Sala de atendimento e acolhimento do escritório LN INTEGRA em Nova Iguaçu"
                 fetchPriority="high"
+                decoding="async"
                 className="w-full h-[360px] sm:h-[450px] object-cover object-center"
               />
               <div className="bg-[#1C1814]/95 border-t border-[#C6A15B]/30 px-6 py-4 flex items-center justify-between gap-4">

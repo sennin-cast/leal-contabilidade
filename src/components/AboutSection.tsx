@@ -16,6 +16,7 @@ export const AboutSection: React.FC = () => {
                 src="./images/office/recepcao-ampla.jpg"
                 alt="Interior acolhedor da LN INTEGRA Contabilidade e Psicologia"
                 loading="lazy"
+                decoding="async"
                 className="w-full h-[360px] sm:h-[450px] object-cover"
               />
             </div>

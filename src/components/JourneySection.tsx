@@ -90,7 +90,10 @@ export const JourneySection: React.FC = () => {
           </div>
 
           {/* Active Step Detail Panel */}
-          <div className="lg:col-span-6 bg-[#1C1814] text-[#F5EFE6] rounded-2xl p-8 sm:p-10 space-y-6 shadow-editorial">
+          <div
+            aria-live="polite"
+            className="surface-dark lg:col-span-6 bg-[#1C1814] text-[#F5EFE6] rounded-2xl p-8 sm:p-10 space-y-6 shadow-editorial"
+          >
             <span className="inline-block text-xs font-semibold px-3 py-1 rounded-full bg-[#2E2720] text-[#D4AF6A] border border-[#C6A15B]/35 tabular-nums">
               Etapa {activeIndex + 1} de {steps.length}
             </span>
@@ -106,10 +109,10 @@ export const JourneySection: React.FC = () => {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#C6A15B] text-[#181512] text-sm font-bold hover:bg-[#D4AF6A] transition-colors cursor-pointer"
+                className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#C6A15B] text-[#181512] text-sm font-bold hover:bg-[#D4AF6A] active:scale-[0.98] transition-[background-color,transform] cursor-pointer"
               >
                 <span>Começar pelo WhatsApp</span>
-                <ArrowUpRight className="w-4 h-4" />
+                <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
               </a>
             </div>
           </div>

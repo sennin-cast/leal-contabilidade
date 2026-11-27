@@ -82,6 +82,29 @@ export const PracticeAreasSection: React.FC = () => {
 
   const mainUrl = buildWhatsAppUrl(current.whatsappNumber, current.topics[0].message);
 
+  const handleTabKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    const keys: PracticeKey[] = ['contabilidade', 'psicologia'];
+    const currentIndex = keys.indexOf(active);
+    let nextIndex = currentIndex;
+
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+      nextIndex = (currentIndex + 1) % keys.length;
+    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      nextIndex = (currentIndex - 1 + keys.length) % keys.length;
+    } else if (e.key === 'Home') {
+      nextIndex = 0;
+    } else if (e.key === 'End') {
+      nextIndex = keys.length - 1;
+    } else {
+      return;
+    }
+
+    e.preventDefault();
+    const nextKey = keys[nextIndex];
+    setActive(nextKey);
+    document.getElementById(`tab-${nextKey}`)?.focus();
+  };
+
   return (
     <section
       id="atuacao"
@@ -102,14 +125,18 @@ export const PracticeAreasSection: React.FC = () => {
           <div
             role="tablist"
             aria-label="Selecionar área de atuação"
+            onKeyDown={handleTabKeyDown}
             className="inline-flex p-1.5 rounded-xl bg-[#EDE5D8] border border-[#C4B69F] self-start lg:self-auto"
           >
             <button
+              id="tab-contabilidade"
               type="button"
               role="tab"
               aria-selected={active === 'contabilidade'}
+              aria-controls="practice-tabpanel"
+              tabIndex={active === 'contabilidade' ? 0 : -1}
               onClick={() => setActive('contabilidade')}
-              className={`px-5 py-2.5 rounded-lg text-sm font-semibold transition-colors cursor-pointer ${
+              className={`px-5 py-2.5 rounded-lg text-sm font-semibold active:scale-[0.98] transition-[background-color,color,transform] cursor-pointer ${
                 active === 'contabilidade'
                   ? 'bg-[#1C1814] text-[#F5EFE6]'
                   : 'text-[#3A3128] hover:text-[#181512]'
@@ -118,11 +145,14 @@ export const PracticeAreasSection: React.FC = () => {
               Contabilidade
             </button>
             <button
+              id="tab-psicologia"
               type="button"
               role="tab"
               aria-selected={active === 'psicologia'}
+              aria-controls="practice-tabpanel"
+              tabIndex={active === 'psicologia' ? 0 : -1}
               onClick={() => setActive('psicologia')}
-              className={`px-5 py-2.5 rounded-lg text-sm font-semibold transition-colors cursor-pointer ${
+              className={`px-5 py-2.5 rounded-lg text-sm font-semibold active:scale-[0.98] transition-[background-color,color,transform] cursor-pointer ${
                 active === 'psicologia'
                   ? 'bg-[#1C1814] text-[#F5EFE6]'
                   : 'text-[#3A3128] hover:text-[#181512]'
@@ -134,14 +164,16 @@ export const PracticeAreasSection: React.FC = () => {
         </div>
 
         <div
+          id="practice-tabpanel"
           role="tabpanel"
+          aria-labelledby={`tab-${active}`}
           className="rounded-2xl border border-[#B5A58C] bg-[#EDE5D8] p-8 sm:p-12 shadow-soft grid grid-cols-1 lg:grid-cols-12 gap-10 items-start"
         >
           {/* Left: Details & Pillars */}
           <div className="lg:col-span-7 space-y-6">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 rounded-xl border border-[#7A5B22]/45 bg-[#E4DAC9] flex items-center justify-center text-[#7A5B22]">
-                <Icon className="w-6 h-6 stroke-[1.75]" />
+                <Icon className="w-6 h-6 stroke-[1.75]" aria-hidden="true" />
               </div>
               <div>
                 <h3 className="font-display text-2xl sm:text-3xl font-semibold text-[#181512]">
@@ -162,7 +194,7 @@ export const PracticeAreasSection: React.FC = () => {
                   className="flex items-start gap-3 text-sm sm:text-base text-[#181512] font-medium"
                 >
                   <span className="w-5 h-5 rounded-full bg-[#E4DAC9] border border-[#7A5B22]/50 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <Check className="w-3 h-3 text-[#7A5B22]" />
+                    <Check className="w-3 h-3 text-[#7A5B22]" aria-hidden="true" />
                   </span>
                   <span>{pillar}</span>
                 </li>
@@ -195,7 +227,7 @@ export const PracticeAreasSection: React.FC = () => {
                   className="flex items-center justify-between gap-3 px-4 py-3 rounded-xl bg-[#EDE5D8] border border-[#C4B69F] hover:border-[#7A5B22] text-sm font-medium text-[#181512] transition-colors cursor-pointer"
                 >
                   <span>{topic.label}</span>
-                  <ArrowUpRight className="w-4 h-4 text-[#7A5B22] flex-shrink-0" />
+                  <ArrowUpRight className="w-4 h-4 text-[#7A5B22] flex-shrink-0" aria-hidden="true" />
                 </a>
               ))}
             </div>
@@ -207,7 +239,7 @@ export const PracticeAreasSection: React.FC = () => {
               className="btn-primary w-full"
             >
               <span>{current.ctaLabel}</span>
-              <ArrowUpRight className="w-4 h-4 text-[#C6A15B]" />
+              <ArrowUpRight className="w-4 h-4 text-[#C6A15B]" aria-hidden="true" />
             </a>
           </div>
         </div>

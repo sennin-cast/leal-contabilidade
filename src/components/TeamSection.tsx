@@ -52,7 +52,7 @@ export const TeamSection: React.FC = () => {
 
                 <div className="lg:col-span-5 space-y-2">
                   <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#EDE5D8] border border-[#C4B69F] text-xs font-semibold text-[#181512] tabular-nums">
-                    <BadgeCheck className="w-3.5 h-3.5 text-[#7A5B22]" />
+                    <BadgeCheck className="w-3.5 h-3.5 text-[#7A5B22]" aria-hidden="true" />
                     <span>{person.registryLabel}</span>
                   </div>
                   <p className="text-sm text-[#3A3128] leading-relaxed">{person.bio}</p>
@@ -66,11 +66,11 @@ export const TeamSection: React.FC = () => {
                     href={contactUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#1C1814] text-[#F5EFE6] text-xs font-semibold hover:bg-[#3A3128] transition-colors cursor-pointer"
+                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#1C1814] text-[#F5EFE6] text-xs font-semibold hover:bg-[#3A3128] active:scale-[0.98] transition-[background-color,transform] cursor-pointer"
                   >
-                    <MessageCircle className="w-3.5 h-3.5 text-[#D4AF6A]" />
+                    <MessageCircle className="w-3.5 h-3.5 text-[#D4AF6A]" aria-hidden="true" />
                     <span>Conversar no WhatsApp</span>
-                    <ArrowUpRight className="w-3.5 h-3.5 text-[#D4AF6A]" />
+                    <ArrowUpRight className="w-3.5 h-3.5 text-[#D4AF6A]" aria-hidden="true" />
                   </a>
                 </div>
               </article>

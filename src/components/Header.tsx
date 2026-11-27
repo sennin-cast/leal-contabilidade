@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
 import { siteConfig } from '../config/siteConfig';
+import { BrandMark } from './BrandMark';
 
 const navLinks = [
   { label: 'Início', href: '#inicio' },
@@ -79,33 +80,32 @@ export const Header: React.FC = () => {
         className={`fixed top-0 inset-x-0 z-40 transition-[background-color,border-color,color,box-shadow] duration-300 ${
           scrolled
             ? 'bg-[#E4DAC9]/95 backdrop-blur-md border-b border-[#C4B69F] shadow-soft text-[#181512]'
-            : 'surface-dark bg-[#1C1814]/65 backdrop-blur-sm border-b border-[#C6A15B]/15 text-[#F5EFE6]'
+            : 'surface-dark bg-[#181512]/80 backdrop-blur-md border-b border-[#C6A15B]/25 text-[#F5EFE6]'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-5 sm:px-8 h-20 flex items-center justify-between gap-4">
+        <div className="max-w-7xl mx-auto px-5 sm:px-8 h-20 sm:h-[88px] flex items-center justify-between gap-4">
           <a
             href="#inicio"
-            className="flex items-center gap-3 group cursor-pointer rounded-xl"
-            aria-label="LN INTEGRA — Ir para o início"
+            className="flex items-center gap-3 sm:gap-3.5 group cursor-pointer rounded-xl py-1 pr-2"
+            aria-label="LN INTEGRA — Contabilidade e Psicologia — Ir para o início"
           >
-            <div className="w-10 h-10 rounded-full overflow-hidden border border-[#C6A15B]/75 bg-[#EDE5D8] flex-shrink-0 transition-transform duration-300 group-hover:scale-105">
-              <img
-                src={siteConfig.brand.logoPath}
-                alt="Logo LN INTEGRA"
-                className="w-full h-full object-cover scale-125"
-              />
+            <div className="relative flex-shrink-0 transition-transform duration-300 group-hover:scale-105">
+              <BrandMark className="w-11 h-11 sm:w-12 sm:h-12 rounded-full shadow-soft" />
             </div>
-            <div className="flex flex-col">
+            <div className="hidden sm:block w-px h-8 bg-[#C6A15B]/35 flex-shrink-0" aria-hidden="true" />
+            <div className="flex flex-col min-w-0">
               <span
-                className={`font-display text-lg sm:text-xl font-bold tracking-tight leading-none transition-colors ${
+                translate="no"
+                className={`font-display text-lg sm:text-[1.35rem] font-bold tracking-[0.04em] leading-none transition-colors ${
                   scrolled ? 'text-[#181512]' : 'text-[#F5EFE6]'
                 }`}
               >
-                LN INTEGRA
+                <span className={scrolled ? 'text-[#7A5B22]' : 'text-[#D4AF6A]'}>LN</span>{' '}
+                INTEGRA
               </span>
               <span
-                className={`text-[11px] font-medium mt-0.5 transition-colors ${
-                  scrolled ? 'text-[#3A3128]' : 'text-[#D8CCB8]'
+                className={`text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.14em] sm:tracking-[0.16em] mt-1 transition-colors truncate ${
+                  scrolled ? 'text-[#3A3128]' : 'text-[#D4AF6A]'
                 }`}
               >
                 Contabilidade &amp; Psicologia
@@ -189,7 +189,17 @@ export const Header: React.FC = () => {
         >
           <div>
             <div className="flex items-center justify-between pb-5 border-b border-[#C4B69F]">
-              <span className="font-display text-lg font-bold text-[#181512]">LN INTEGRA</span>
+              <div className="flex items-center gap-2.5">
+                <BrandMark className="w-9 h-9 rounded-full" />
+                <div className="flex flex-col">
+                  <span translate="no" className="font-display text-base font-bold tracking-[0.04em] text-[#181512] leading-none">
+                    <span className="text-[#7A5B22]">LN</span> INTEGRA
+                  </span>
+                  <span className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[#3A3128] mt-1">
+                    Contabilidade &amp; Psicologia
+                  </span>
+                </div>
+              </div>
               <button
                 ref={closeButtonRef}
                 type="button"

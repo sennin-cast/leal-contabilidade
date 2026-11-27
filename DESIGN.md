@@ -22,4 +22,8 @@
 - **Curvas de easing:** `--ease-out: cubic-bezier(0.23, 1, 0.32, 1)` para entradas e microinterações; `--ease-drawer: cubic-bezier(0.32, 0.72, 0, 1)` para drawers.
 - **Feedback tátil:** Botões e controles interativos usam `active:scale-[0.98]` e `touch-action: manipulation`.
 - **Foco adaptativo:** `--focus-offset` alterna entre `#E4DAC9` (superfícies claras) e `#1C1814` (`.surface-dark`), garantindo contraste de foco visível em toda a página.
-- **Âncoras e modais:** `section[id]` usa `scroll-margin-top: 5.5rem` para compensar o header fixo; modais e drawers usam `overscroll-behavior: contain`, trava de scroll e restauração de foco; `prefers-reduced-motion` desativa animações.
+- **Âncoras e modais:** `section[id]` usa `scroll-margin-top: 6rem` para compensar o header fixo; modais e drawers usam `overscroll-behavior: contain`, trava de scroll e restauração de foco; `prefers-reduced-motion` desativa animações.
+
+## 4. Marca & Símbolo Institucional (`BrandMark`)
+- **Monograma vetorial (`src/components/BrandMark.tsx`):** Reprodução vetorial fiel do emblema circular oficial (`LN` entrelaçado em dourado champagne `#E6CA8B` → `#C6A15B` → `#9A7838` sobre medalhão `#FAF6EE`), garantindo nitidez absoluta no Header, Hero e Rodapé sem redução ilegível de texto rasterizado.
+- **Lockup:** `LN INTEGRA` em `Bricolage Grotesque` (`tracking-[0.04em]`) com destaque dourado em `LN`, acompanhado de `CONTABILIDADE & PSICOLOGIA` em caixa alta espaçada (`tracking-[0.14em]` / `0.16em`).

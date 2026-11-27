@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { X } from 'lucide-react';
 import { siteConfig, buildWhatsAppUrl } from '../config/siteConfig';
+import { BrandMark } from './BrandMark';
 
 export const Footer: React.FC = () => {
   const [privacyOpen, setPrivacyOpen] = useState(false);
@@ -37,16 +38,17 @@ export const Footer: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-[#C6A15B]/20">
             <div className="md:col-span-5 space-y-4">
               <div className="flex items-center gap-3.5">
-                <div className="w-10 h-10 rounded-full overflow-hidden border border-[#C6A15B]/65 bg-[#EDE5D8]">
-                  <img
-                    src={siteConfig.brand.logoPath}
-                    alt="Logo LN INTEGRA"
-                    className="w-full h-full object-cover scale-125"
-                  />
-                </div>
+                <BrandMark className="w-12 h-12 rounded-full flex-shrink-0 shadow-soft" />
                 <div>
-                  <div className="font-display text-xl font-bold text-[#F5EFE6]">LN INTEGRA</div>
-                  <div className="text-xs text-[#D4AF6A]">Contabilidade &amp; Psicologia</div>
+                  <div
+                    translate="no"
+                    className="font-display text-xl font-bold tracking-[0.04em] text-[#F5EFE6] leading-none"
+                  >
+                    <span className="text-[#D4AF6A]">LN</span> INTEGRA
+                  </div>
+                  <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#D4AF6A] mt-1.5">
+                    Contabilidade &amp; Psicologia
+                  </div>
                 </div>
               </div>
               <p className="text-sm leading-relaxed max-w-sm text-[#D8CCB8]">

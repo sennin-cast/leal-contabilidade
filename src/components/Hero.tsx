@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ArrowDownRight, MapPin, MessageCircle, ShieldCheck } from 'lucide-react';
 import { siteConfig, buildWhatsAppUrl } from '../config/siteConfig';
+import { BrandMark } from './BrandMark';
 
 type HeroArea = 'contabilidade' | 'psicologia';
 
@@ -37,8 +38,32 @@ export const Hero: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-[#181512]/90 via-transparent to-[#181512]/60" />
       </div>
 
+      {/* Subtle Institutional Emblem Watermark on Right */}
+      <div
+        aria-hidden="true"
+        className="hidden lg:flex items-center justify-end pointer-events-none absolute inset-y-0 right-0 max-w-7xl mx-auto inset-x-0 px-8 z-0"
+      >
+        <BrandMark variant="emblem" className="w-[22rem] h-[22rem] opacity-[0.07]" />
+      </div>
+
       <div className="max-w-7xl mx-auto px-5 sm:px-8 w-full relative z-10">
         <div className="max-w-3xl space-y-7">
+          {/* Institutional Brand Lockup */}
+          <div className="hero-enter inline-flex items-center gap-3.5 pr-5 py-1.5 rounded-full bg-[#181512]/65 backdrop-blur-md border border-[#C6A15B]/35">
+            <BrandMark className="w-10 h-10 sm:w-11 sm:h-11 rounded-full flex-shrink-0" />
+            <div className="flex flex-col">
+              <span
+                translate="no"
+                className="font-display text-sm sm:text-base font-bold tracking-[0.08em] text-[#F5EFE6] leading-none"
+              >
+                <span className="text-[#D4AF6A]">LN</span> INTEGRA
+              </span>
+              <span className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.16em] text-[#D8CCB8] mt-1">
+                Contabilidade &amp; Psicologia · Nova Iguaçu
+              </span>
+            </div>
+          </div>
+
           <h1 className="hero-enter font-display text-4xl sm:text-5xl lg:text-[4.15rem] font-semibold text-[#F5EFE6] leading-[1.04] tracking-[-0.03em]">
             Contabilidade e Psicologia com{' '}
             <span className="text-[#D4AF6A]">clareza, presença</span> e cuidado real.
